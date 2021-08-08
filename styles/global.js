@@ -5,7 +5,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   html {
-    font-family: Roboto Slab, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+    font-family: PT Serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
   }
   body {
     animation: fadeIn ease 1s;
@@ -13,6 +13,9 @@ export default createGlobalStyle`
     animation-fill-mode: forwards;
     background: #212121;
     color: white;
+  }
+  body::-webkit-scrollbar {
+    display: none;
   }
   @keyframes fadeIn {
     0% { opacity: 0 }

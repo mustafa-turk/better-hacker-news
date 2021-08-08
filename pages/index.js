@@ -1,11 +1,17 @@
 import { fetchStory, fetchStoryIds } from "api/stories";
 import StoriesContainer from "components/stories/StoriesContainer";
+import Head from "next/head";
 import styled from "styled-components";
 
 export default function HomePage({ initialStories, storyIds }) {
   return (
     <Wrapper>
-      <Header><Highlight>(Better)</Highlight> Hacker News</Header>
+      <Head>
+        <title>Better Hacker News | New stories</title>
+      </Head>
+      <Header>
+        <Highlight>(Better)</Highlight> Hacker News
+      </Header>
       <StoriesContainer storyIds={storyIds} initialStories={initialStories} />
     </Wrapper>
   );

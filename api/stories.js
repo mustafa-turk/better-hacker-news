@@ -9,12 +9,19 @@ export async function fetchStoryIds() {
 }
 
 export async function fetchStory(storyId) {
+  console.log(storyId)
   const STORY_URL = `${BASE_URL}/item`;
   const result = await fetch(`${STORY_URL}/${storyId}.json`);
   const story = await result.json();
   return {
     ...story,
-    domain: story?.url ? new URL(story.url).hostname : undefined,
+    domain: story?.url ? new URL(story.url).hostname : null,
     date: moment(new Date(story?.time * 1000)).fromNow()
   }
+}
+
+export async function fetchComments(storyId) {
+  const result = await fetch(`http://hn.algolia.com/api/v1/items/${storyId}`);
+  const story = await result.json();
+  return story.children;
 }

@@ -1,13 +1,14 @@
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function Story({ story = {} }) {
   return (
-    <a href={story.url} target="_blank" rel="noopener noreferrer">
+    <Link href={`/story/${story.id}`} scroll={false}>
       <Wrapper>
           <Title>{story.title}</Title>
           <Details>{story.domain} • {story.date} • {story.descendants} comments</Details>
       </Wrapper>
-    </a>
+    </Link>
   );
 }
 
