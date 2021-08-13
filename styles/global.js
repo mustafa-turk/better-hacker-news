@@ -5,17 +5,18 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   html {
-    font-family: PT Serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
+    font-family: inter;
   }
   body {
     animation: fadeIn ease 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    background: #212121;
+    background: black;
+    font-family: inter;
     color: white;
   }
   body::-webkit-scrollbar {
-    display: none;
+    display: none !important;
   }
   @keyframes fadeIn {
     0% { opacity: 0 }
@@ -32,8 +33,8 @@ export default createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: black;
     cursor: pointer;
+    color: white;
   }
   ul {
     padding-inline-start: 20px;

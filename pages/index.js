@@ -9,9 +9,7 @@ export default function HomePage({ initialStories, storyIds }) {
       <Head>
         <title>Better Hacker News | New stories</title>
       </Head>
-      <Header>
-        <Highlight>(Better)</Highlight> Hacker News
-      </Header>
+      <Header>Hacker News</Header>
       <StoriesContainer storyIds={storyIds} initialStories={initialStories} />
     </Wrapper>
   );
@@ -24,20 +22,13 @@ export async function getStaticProps() {
 }
 
 const Wrapper = styled.div`
-  max-width: 960px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 20px;
 `;
 
-const Highlight = styled.span`
-  background: linear-gradient(to bottom, transparent 50%, #7D204D 30%);
-  padding: 0 5px;
-`;
-
-const Header = styled.h1`
+const Header = styled.div`
   font-weight: 900;
-  font-size: 28px;
-  border-bottom: 1px solid #3c3c3c;
+  font-size: 24px;
   padding-bottom: 10px;
-  text-align:center;
 `;
