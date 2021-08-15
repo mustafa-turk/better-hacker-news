@@ -9,7 +9,7 @@ export default function CustomApp({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Personal website of Mustafa Türk" />
+        <meta name="description" content="A better Hacker News experience" />
       </Head>
       <Global />
       <QueryClientProvider client={queryClient}>
