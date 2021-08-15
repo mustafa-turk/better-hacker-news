@@ -22,7 +22,7 @@ export default function CommentsContainer({ storyId }) {
       </Styled.LoadingComments>
     );
   }
-  if (isEmpty(comments.length)) {
+  if (comments.length === 0) {
     return 'No comments yet';
   }
   return comments.map((comment) => <Comment key={comment.id} comment={comment} />);

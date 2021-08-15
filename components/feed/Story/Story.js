@@ -8,7 +8,7 @@ export default function Story({ story = {} }) {
         <Styled.Title>{story.title}</Styled.Title>
         {story.domain ? (
           <Styled.Domain>
-            <Styled.LinkIcon /> {story.domain}
+            <Styled.DomainIcon /> {story.domain}
           </Styled.Domain>
         ) : null}
         <Styled.Details>

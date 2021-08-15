@@ -1,8 +1,7 @@
 import Link from 'next/link';
-import { GoFlame } from 'react-icons/go';
-import { FaRegClock } from 'react-icons/fa';
 import { useRouter } from 'next/router';
 import * as Styled from './styled';
+import { ClockIcon, HotIcon } from '../Icon';
 
 export default function Navigation() {
   const router = useRouter();
@@ -11,13 +10,13 @@ export default function Navigation() {
     <Styled.Nav>
       <Link href="/">
         <Styled.NavItem isActive={router.pathname === '/'}>
-          <GoFlame />
+          <HotIcon />
           Top
         </Styled.NavItem>
       </Link>
       <Link href="/new">
         <Styled.NavItem isActive={router.pathname === '/new'}>
-          <FaRegClock />
+          <ClockIcon />
           New
         </Styled.NavItem>
       </Link>

@@ -1,6 +1,6 @@
+import { LinkIcon } from 'components/shared/Icon';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import { BiLink } from 'react-icons/bi';
 
 export const Container = styled.div`
   cursor: pointer;
@@ -30,7 +30,7 @@ export const Details = styled.div`
   margin-top: 20px;
 `;
 
-export const LinkIcon = styled(BiLink)`
+export const DomainIcon = styled(LinkIcon)`
   margin-right: 5px;
   color: ${theme.colors.gray[200]};
 `;
