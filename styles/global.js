@@ -4,6 +4,9 @@ export default createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  *:hover {
+    transition: 0.3s;
+  }
   html {
     font-family: inter;
   }

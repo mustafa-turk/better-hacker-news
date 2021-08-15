@@ -2,9 +2,15 @@ import moment from "moment";
 
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 
-export async function fetchStoryIds() {
-  const LATEST_STORY_IDS_URL = `${BASE_URL}/topstories.json`;
-  const result = await fetch(LATEST_STORY_IDS_URL);
+export async function fetchTopStoryIds() {
+  const TOP_STORY_IDS_URL = `${BASE_URL}/topstories.json`;
+  const result = await fetch(TOP_STORY_IDS_URL);
+  return await result.json();
+}
+
+export async function fetchNewStoryIds() {
+  const NEW_STORY_IDS_URL = `${BASE_URL}/newstories.json`;
+  const result = await fetch(NEW_STORY_IDS_URL);
   return await result.json();
 }
 

@@ -1,12 +1,13 @@
 import { fetchComments, fetchStory } from 'api/stories';
-import Loader from 'components/Loader';
-import Comment from 'components/story-details/Comment';
+import Loader from 'components/shared/Loader';
+import Comment from 'components/details/Comment/Comment';
 import moment from 'moment';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import theme from 'styles/theme';
+import Layout from 'components/shared/Layout/Layout';
 
 export default function StoryDetailsPage() {
   const router = useRouter();
@@ -15,7 +16,7 @@ export default function StoryDetailsPage() {
   const {data: comments, isLoadingComments} = useQuery(["comments", storyId], () => fetchComments(storyId), { retry: true });
 
   return (
-    <Wrapper>
+    <Layout>
       <Head>
         <title>{story.title}</title>
       </Head>
@@ -28,15 +29,9 @@ export default function StoryDetailsPage() {
           {comments && comments.length > 0 ? comments.map((comment) => <Comment comment={comment} />) : null}
         </Loader>
       </Loader>
-    </Wrapper>
+    </Layout>
   )
 }
-
-const Wrapper = styled.div`
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 20px;
-`;
 
 const Header = styled.div`
   padding-bottom: 10px;
