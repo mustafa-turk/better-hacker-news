@@ -1,12 +1,11 @@
-import PropagateLoader from 'react-spinners/BeatLoader';
+import BeatLoader from 'react-spinners/BeatLoader';
 import { fetchComments } from 'api/stories';
 import Comment from '../Comment/Comment';
 import { useQuery } from 'react-query';
-import theme from 'styles/theme';
 import * as Styled from './styled';
-import { isEmpty } from 'lodash';
+import theme from 'styles/theme';
 
-export default function CommentsContainer({ storyId }) {
+export default function CommentsContainer({ storyId, length }) {
   const { data: comments, isLoading } = useQuery(
     ['comments', storyId],
     () => fetchComments(storyId),
@@ -17,7 +16,7 @@ export default function CommentsContainer({ storyId }) {
   if (!storyId || isLoading) {
     return (
       <Styled.LoadingComments>
-        <PropagateLoader color={theme.colors.gray[100]} />
+        <BeatLoader color={theme.colors.gray[200]} />
         <Styled.LoadingText>Loading comments</Styled.LoadingText>
       </Styled.LoadingComments>
     );
@@ -25,5 +24,12 @@ export default function CommentsContainer({ storyId }) {
   if (comments.length === 0) {
     return 'No comments yet';
   }
-  return comments.map((comment) => <Comment key={comment.id} comment={comment} />);
+  return (
+    <>
+      <Styled.Title>{length} Comments</Styled.Title>
+      {comments.map((comment) => (
+        <Comment key={comment.id} comment={comment} />
+      ))}
+    </>
+  );
 }

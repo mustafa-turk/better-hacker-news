@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import theme from 'styles/theme';
 
 export const Container = styled.div`
-  border-left: 2px solid ${theme.colors.accent};
+  border-left: 2px solid ${(p) => p.theme.colors.accent};
   padding-left: 20px;
   margin-right: 10px;
   font-family: 'Roboto Mono', monospace;
@@ -25,7 +24,7 @@ export const NestedContainer = styled.div`
 `;
 
 export const Author = styled.div`
-  color: ${theme.colors.gray[200]};
+  color: ${(p) => p.theme.colors.gray[200]};
   margin-bottom: 10px;
 `;
 
@@ -33,14 +32,19 @@ export const Content = styled.div`
   p {
     margin-bottom: 20px !important;
   }
+  a:link {
+    padding: 0 2px;
+    border-radius: 1px;
+    background: ${(p) => p.theme.colors.gray[100]};
+  }
 `;
 
 export const Button = styled.button`
   padding: 5px 10px;
   border-radius: 12px;
   border: none;
-  background: ${theme.colors.gray[100]};
-  color: ${theme.colors.gray[200]};
+  background: ${(p) => p.theme.colors.gray[100]};
+  color: ${(p) => p.theme.colors.gray[200]};
   cursor: pointer;
   font-size: 14px;
 `;

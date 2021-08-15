@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThemeProvider } from 'styled-components';
 import theme from 'styles/theme';
 import Global from '../styles/global';
 
@@ -15,9 +16,11 @@ export default function CustomApp({ Component, pageProps }) {
       </Head>
       <Global />
       <QueryClientProvider client={queryClient}>
-        <SkeletonTheme color={theme.colors.gray[50]} highlightColor={theme.colors.gray[100]}>
-          <Component {...pageProps} />
-        </SkeletonTheme>
+        <ThemeProvider theme={theme}>
+          <SkeletonTheme color={theme.colors.gray[50]} highlightColor={theme.colors.gray[100]}>
+            <Component {...pageProps} />
+          </SkeletonTheme>
+        </ThemeProvider>
       </QueryClientProvider>
     </>
   );

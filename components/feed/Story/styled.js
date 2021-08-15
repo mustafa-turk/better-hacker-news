@@ -1,16 +1,14 @@
 import { LinkIcon } from 'components/shared/Icon';
 import styled from 'styled-components';
-import theme from 'styles/theme';
 
 export const Container = styled.div`
   cursor: pointer;
-  font-family: 'Roboto Mono', monospace;
-  border: 1px solid ${theme.colors.gray[100]};
+  border: 1px solid ${(p) => p.theme.colors.gray[100]};
   padding: 20px;
   border-radius: 10px;
   margin: 10px 0;
   &:hover {
-    background: ${theme.colors.gray[50]};
+    background: ${(p) => p.theme.colors.gray[50]};
   }
 `;
 
@@ -32,14 +30,15 @@ export const Details = styled.div`
 
 export const DomainIcon = styled(LinkIcon)`
   margin-right: 5px;
-  color: ${theme.colors.gray[200]};
+  color: ${(p) => p.theme.colors.gray[200]};
 `;
 
 export const Domain = styled.div`
   display: flex;
   align-items: center;
-  color: ${theme.colors.gray[200]};
+  color: ${(p) => p.theme.colors.gray[200]};
   margin-top: 5px;
+  font-family: 'Roboto Mono', monospace;
 `;
 
 export const CommentsCount = styled.span`

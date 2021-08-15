@@ -1,9 +1,13 @@
 import styled from 'styled-components';
-import theme from 'styles/theme';
+
+export const Title = styled.h3`
+  margin-bottom: 20px;
+  font-size: 17px;
+`;
 
 export const LoadingComments = styled.div`
   text-align: center;
-  color: ${theme.colors.gray[200]};
+  color: ${(p) => p.theme.colors.gray[200]};
 `;
 
 export const LoadingText = styled.p`

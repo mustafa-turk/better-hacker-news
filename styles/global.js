@@ -51,4 +51,7 @@ export default createGlobalStyle`
   p {
     margin: 0 !important;
   }
+  a:link {
+    word-wrap: break-word;
+  }
 `;

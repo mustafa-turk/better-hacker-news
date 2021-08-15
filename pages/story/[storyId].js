@@ -5,15 +5,14 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import theme from 'styles/theme';
 import Layout from 'components/shared/Layout/Layout';
 import CommentsContainer from 'components/details/CommentsContainer';
+import { LinkIcon } from 'components/shared/Icon';
 
 export default function StoryDetailsPage() {
   const router = useRouter();
   const { storyId } = router.query;
   const { data: story = {}, isLoading } = useQuery(['story', storyId], () => fetchStory(storyId));
-
   return (
     <Layout>
       <Head>
@@ -22,15 +21,21 @@ export default function StoryDetailsPage() {
       <>
         <Header>
           <Title>{isLoading ? <Skeleton /> : story.title}</Title>
-          <CommentMetaData>
+          <Source href={story.url} target="_blank" rel="noopener">
             {isLoading ? (
               <Skeleton />
             ) : (
-              `${story.descendants} comments • ${moment(new Date(story.time * 1000)).fromNow()}`
+              <>
+                <LinkIcon size="19px" />
+                <div>{story.domain}</div>
+              </>
             )}
+          </Source>
+          <CommentMetaData>
+            {isLoading ? <Skeleton /> : moment(new Date(story.time * 1000)).fromNow()}
           </CommentMetaData>
         </Header>
-        <CommentsContainer storyId={storyId} />
+        <CommentsContainer storyId={storyId} length={story.descendants} />
       </>
     </Layout>
   );
@@ -41,6 +46,15 @@ const Header = styled.div`
   margin-bottom: 30px;
 `;
 
+const Source = styled.a`
+  color: ${(p) => p.theme.colors.accent};
+  margin-bottom: 10px;
+  display: flex;
+  svg {
+    margin-right: 5px;
+  }
+`;
+
 const Title = styled.h1`
   font-weight: 900;
   font-size: 28px;
@@ -48,5 +62,5 @@ const Title = styled.h1`
 `;
 
 const CommentMetaData = styled.div`
-  color: ${theme.colors.gray[200]};
+  color: ${(p) => p.theme.colors.gray[200]};
 `;
