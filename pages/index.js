@@ -1,9 +1,9 @@
-import Head from "next/head";
-import { fetchStory, fetchTopStoryIds } from "api/stories";
-import Navbar from "components/shared/Navbar";
-import StoriesContainer from "components/feed/StoriesContainer";
-import Layout from "components/shared/Layout/Layout";
-import Header from "components/feed/Header";
+import Head from 'next/head';
+import { fetchStory, fetchTopStoryIds } from 'api/stories';
+import Navbar from 'components/shared/Navbar';
+import StoriesContainer from 'components/feed/StoriesContainer';
+import Layout from 'components/shared/Layout/Layout';
+import Header from 'components/feed/Header';
 
 export default function HomePage({ initialStories, storyIds }) {
   return (
@@ -20,6 +20,8 @@ export default function HomePage({ initialStories, storyIds }) {
 
 export async function getStaticProps() {
   const storyIds = await fetchTopStoryIds();
-  const initialStories = await Promise.all(storyIds.slice(0, 30).map(storyId => fetchStory(storyId)));
+  const initialStories = await Promise.all(
+    storyIds.slice(0, 30).map((storyId) => fetchStory(storyId)),
+  );
   return { props: { storyIds, initialStories } };
 }

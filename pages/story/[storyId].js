@@ -12,8 +12,14 @@ import Layout from 'components/shared/Layout/Layout';
 export default function StoryDetailsPage() {
   const router = useRouter();
   const { storyId } = router.query;
-  const {data: story = {}, isLoadingStory} = useQuery(["story", storyId], () => fetchStory(storyId));
-  const {data: comments, isLoadingComments} = useQuery(["comments", storyId], () => fetchComments(storyId), { retry: true });
+  const { data: story = {}, isLoadingStory } = useQuery(['story', storyId], () =>
+    fetchStory(storyId),
+  );
+  const { data: comments, isLoadingComments } = useQuery(
+    ['comments', storyId],
+    () => fetchComments(storyId),
+    { retry: true },
+  );
 
   return (
     <Layout>
@@ -23,14 +29,18 @@ export default function StoryDetailsPage() {
       <Loader isLoading={isLoadingStory}>
         <Header>
           <Title>{story.title}</Title>
-          <CommentMetaData>{story.descendants} comments • {moment(new Date(story.time * 1000)).fromNow()}</CommentMetaData>
+          <CommentMetaData>
+            {story.descendants} comments • {moment(new Date(story.time * 1000)).fromNow()}
+          </CommentMetaData>
         </Header>
         <Loader isLoading={isLoadingComments}>
-          {comments && comments.length > 0 ? comments.map((comment) => <Comment comment={comment} />) : null}
+          {comments && comments.length > 0
+            ? comments.map((comment) => <Comment key={comment.id} comment={comment} />)
+            : null}
         </Loader>
       </Loader>
     </Layout>
-  )
+  );
 }
 
 const Header = styled.div`

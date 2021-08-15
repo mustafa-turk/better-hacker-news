@@ -43,4 +43,4 @@ export const Button = styled.button`
   color: ${theme.colors.gray[200]};
   cursor: pointer;
   font-size: 14px;
-`
+`;

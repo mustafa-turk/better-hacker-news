@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import theme from "styles/theme";
-import { BiLink } from "react-icons/bi";
+import styled from 'styled-components';
+import theme from 'styles/theme';
+import { BiLink } from 'react-icons/bi';
 
 export const Container = styled.div`
   cursor: pointer;
@@ -28,20 +28,20 @@ export const Details = styled.div`
     margin-right: 10px;
   }
   margin-top: 20px;
-`
+`;
 
 export const LinkIcon = styled(BiLink)`
   margin-right: 5px;
   color: ${theme.colors.gray[200]};
-`
+`;
 
 export const Domain = styled.div`
   display: flex;
   align-items: center;
   color: ${theme.colors.gray[200]};
   margin-top: 5px;
-`
+`;
 
 export const CommentsCount = styled.span`
-  color: #C6C6C6;
-`
+  color: #c6c6c6;
+`;

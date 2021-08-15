@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment from 'moment';
 
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
 
@@ -21,8 +21,8 @@ export async function fetchStory(storyId) {
   return {
     ...story,
     domain: story?.url ? new URL(story.url).hostname : null,
-    date: moment(new Date(story?.time * 1000)).fromNow()
-  }
+    date: moment(new Date(story?.time * 1000)).fromNow(),
+  };
 }
 
 export async function fetchComments(storyId) {

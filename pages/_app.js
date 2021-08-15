@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Global from "../styles/global";
+import Global from '../styles/global';
 
 const queryClient = new QueryClient();
 

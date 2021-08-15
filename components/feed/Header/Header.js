@@ -1,9 +1,5 @@
-import * as Styled from "./styled";
+import * as Styled from './styled';
 
 export default function Header({ children }) {
-  return (
-    <Styled.Header>
-      {children}
-    </Styled.Header>
-  )
+  return <Styled.Header>{children}</Styled.Header>;
 }
