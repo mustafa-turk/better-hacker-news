@@ -2,7 +2,6 @@ import Link from 'next/link';
 import * as Styled from './styled';
 
 export default function Story({ story = {} }) {
-  console.log(story);
   return (
     <Link href={`/story/${story.id}`} scroll={false}>
       <Styled.Container>

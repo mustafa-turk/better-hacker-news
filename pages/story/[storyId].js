@@ -1,6 +1,5 @@
-import { fetchComments, fetchStory } from 'api/stories';
-import Loader from 'components/shared/Loader';
-import Comment from 'components/details/Comment/Comment';
+import Skeleton from 'react-loading-skeleton';
+import { fetchStory } from 'api/stories';
 import moment from 'moment';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -8,37 +7,31 @@ import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 import Layout from 'components/shared/Layout/Layout';
+import CommentsContainer from 'components/details/CommentsContainer';
 
 export default function StoryDetailsPage() {
   const router = useRouter();
   const { storyId } = router.query;
-  const { data: story = {}, isLoadingStory } = useQuery(['story', storyId], () =>
-    fetchStory(storyId),
-  );
-  const { data: comments, isLoadingComments } = useQuery(
-    ['comments', storyId],
-    () => fetchComments(storyId),
-    { retry: true },
-  );
+  const { data: story = {}, isLoading } = useQuery(['story', storyId], () => fetchStory(storyId));
 
   return (
     <Layout>
       <Head>
         <title>{story.title}</title>
       </Head>
-      <Loader isLoading={isLoadingStory}>
+      <>
         <Header>
-          <Title>{story.title}</Title>
+          <Title>{isLoading ? <Skeleton /> : story.title}</Title>
           <CommentMetaData>
-            {story.descendants} comments • {moment(new Date(story.time * 1000)).fromNow()}
+            {isLoading ? (
+              <Skeleton />
+            ) : (
+              `${story.descendants} comments • ${moment(new Date(story.time * 1000)).fromNow()}`
+            )}
           </CommentMetaData>
         </Header>
-        <Loader isLoading={isLoadingComments}>
-          {comments && comments.length > 0
-            ? comments.map((comment) => <Comment key={comment.id} comment={comment} />)
-            : null}
-        </Loader>
-      </Loader>
+        <CommentsContainer storyId={storyId} />
+      </>
     </Layout>
   );
 }

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "@emotion/babel-plugin": "^11.3.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "next": "^10.0.3",
@@ -11,6 +12,7 @@
     "react-icons": "^4.2.0",
     "react-loading-skeleton": "^2.2.0",
     "react-query": "^3.19.2",
+    "react-spinners": "^0.11.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
