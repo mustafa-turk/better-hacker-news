@@ -18,7 +18,7 @@ export default function HomePage({ initialStories, storyIds }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const storyIds = await fetchTopStoryIds();
   const initialStories = await Promise.all(
     storyIds.slice(0, 30).map((storyId) => fetchStory(storyId)),

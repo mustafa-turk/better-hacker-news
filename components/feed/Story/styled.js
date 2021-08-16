@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   cursor: pointer;
-  border: 1px solid ${(p) => p.theme.colors.gray[100]};
-  padding: 20px;
-  border-radius: 10px;
-  margin: 10px 0;
+  margin: 30px 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid ${(p) => p.theme.colors.gray[100]};
   &:hover {
-    background: ${(p) => p.theme.colors.gray[50]};
+    opacity: 0.8;
   }
 `;
 
@@ -16,16 +15,14 @@ export const Title = styled.p`
   font-size: 18px;
   font-weight: 600;
   padding-top: 4px;
-  font-family: Inter;
 `;
 
 export const Details = styled.div`
   color: #686868;
-  margin-top: 5px;
+  margin-top: 10px;
   span {
     margin-right: 10px;
   }
-  margin-top: 20px;
 `;
 
 export const DomainIcon = styled(LinkIcon)`

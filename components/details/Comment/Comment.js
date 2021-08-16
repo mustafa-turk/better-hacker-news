@@ -11,7 +11,7 @@ export default function Comment({ comment }) {
       <Styled.Content dangerouslySetInnerHTML={{ __html: comment.text }} />
       {isEmpty(comment.children) || (
         <Styled.Button onClick={() => setHidden(hidden ? false : true)}>
-          {hidden ? 'Show all replies' : 'Hide all replies'}
+          {hidden ? 'Show replies' : 'Hide replies'}
         </Styled.Button>
       )}
       {!hidden &&
@@ -29,7 +29,7 @@ function NestedComment({ comment }) {
       <Styled.Content dangerouslySetInnerHTML={{ __html: comment.text }} />
       {isEmpty(comment.children) || (
         <Styled.Button onClick={() => setHidden(hidden ? false : true)}>
-          {hidden ? 'Show all replies' : 'Hide all replies'}
+          {hidden ? 'Show replies' : 'Hide replies'}
         </Styled.Button>
       )}
       {!hidden &&
