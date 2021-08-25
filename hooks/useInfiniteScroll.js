@@ -1,6 +1,6 @@
+import { debounce } from 'lodash';
 import { useState, useEffect } from 'react';
 import { BATCH_AMOUNT } from 'utils/constants';
-import { debounce } from 'utils/debounce';
 
 const MAX_STORIES = 500;
 export const useInfiniteScroll = () => {
@@ -9,15 +9,10 @@ export const useInfiniteScroll = () => {
   const [hasReachedEnd, setHasReachedEnd] = useState(false);
 
   const handleScroll = debounce(() => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight ||
-      loading
-    ) {
-      return false;
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !loading) {
+      setLoading(true);
     }
-
-    setLoading(true);
+    return false;
   }, 500);
 
   useEffect(() => {
@@ -31,12 +26,12 @@ export const useInfiniteScroll = () => {
     }
 
     setLoading(false);
-  }, [loading]);
+  }, [loading, count]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   return { count, loading, hasReachedEnd };
 };
