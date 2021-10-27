@@ -6,7 +6,6 @@ export const Title = styled.h3`
 `;
 
 export const LoadingComments = styled.div`
-  text-align: center;
   color: ${(p) => p.theme.colors.gray[200]};
 `;
 

@@ -1,9 +1,8 @@
-import BeatLoader from 'react-spinners/BeatLoader';
-import { fetchComments } from 'api/stories';
-import Comment from '../Comment/Comment';
+import Skeleton from 'react-loading-skeleton';
+import Comment from './Comment/Comment';
 import { useQuery } from 'react-query';
+import { fetchComments } from 'api/stories';
 import * as Styled from './styled';
-import theme from 'styles/theme';
 
 export default function CommentsContainer({ storyId, length }) {
   const { data: comments, isLoading } = useQuery(
@@ -16,8 +15,9 @@ export default function CommentsContainer({ storyId, length }) {
   if (!storyId || isLoading) {
     return (
       <Styled.LoadingComments>
-        <BeatLoader color={theme.colors.gray[200]} />
-        <Styled.LoadingText>Loading comments</Styled.LoadingText>
+        <Skeleton />
+        <Skeleton width="80%" />
+        <Skeleton width="70%" />
       </Styled.LoadingComments>
     );
   }

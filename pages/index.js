@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { fetchStory, fetchTopStoryIds } from 'api/stories';
 import Navbar from 'components/shared/Navbar';
-import StoriesContainer from 'components/feed/StoriesContainer';
-import Layout from 'components/shared/Layout/Layout';
+import Stories from 'components/feed/Stories';
+import Layout from 'components/shared/Layout';
 import Header from 'components/feed/Header';
 
 export default function HomePage({ initialStories, storyIds }) {
@@ -13,7 +13,7 @@ export default function HomePage({ initialStories, storyIds }) {
       </Head>
       <Header>Hacker News</Header>
       <Navbar />
-      <StoriesContainer storyIds={storyIds} initialStories={initialStories} />
+      <Stories storyIds={storyIds} initialStories={initialStories} />
     </Layout>
   );
 }

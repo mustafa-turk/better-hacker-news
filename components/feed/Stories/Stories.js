@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 import { fetchStory } from 'api/stories';
 import * as Styled from './styled';
-import Story from '../Story';
+import Story from './Story';
 
 export default function StoriesContainer({ initialStories, storyIds }) {
   const { count, hasReachedEnd } = useInfiniteScroll();

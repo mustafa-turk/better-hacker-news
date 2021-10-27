@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import Layout from 'components/shared/Layout/Layout';
-import CommentsContainer from 'components/details/CommentsContainer';
+import Comments from 'components/details/Comments';
 import { LinkIcon } from 'components/shared/Icon';
 
 export default function StoryDetailsPage() {
@@ -35,7 +35,7 @@ export default function StoryDetailsPage() {
             {isLoading ? <Skeleton /> : moment(new Date(story.time * 1000)).fromNow()}
           </CommentMetaData>
         </Header>
-        <CommentsContainer storyId={storyId} length={story.descendants} />
+        <Comments storyId={storyId} length={story.descendants} />
       </>
     </Layout>
   );
