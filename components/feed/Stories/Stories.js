@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 import { fetchStory } from 'api/stories';
 import * as Styled from './styled';
-import Story from './Story';
 
-export default function StoriesContainer({ initialStories, storyIds }) {
+export default function Stories({ initialStories, storyIds, children }) {
   const { count, hasReachedEnd } = useInfiniteScroll();
   const [stories, setStories] = useState(initialStories);
 
@@ -21,11 +20,9 @@ export default function StoriesContainer({ initialStories, storyIds }) {
   }, [storyIds, count]);
 
   return (
-    <>
-      {stories.map((story, index) => (
-        <Story key={story.id} story={story} index={index} />
-      ))}
+    <div>
+      {children(stories)}
       {hasReachedEnd || <Styled.Loading>Loading more stories...</Styled.Loading>}
-    </>
+    </div>
   );
 }

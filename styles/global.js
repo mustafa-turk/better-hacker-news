@@ -4,6 +4,9 @@ export default createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  *::-webkit-scrollbar {
+    display: none;
+  }
   *:hover {
     transition: 0.3s;
   }

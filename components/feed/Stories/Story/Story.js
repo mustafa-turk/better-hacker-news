@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import * as Styled from './styled';
 
-export default function Story({ story = {} }) {
+export default function Story({ story = {}, onClick }) {
   return (
-    <Link href={`/story/${story.id}`} scroll={false}>
+    <div onClick={onClick}>
       <Styled.Container>
         <Styled.Title>{story.title}</Styled.Title>
         {story.domain ? (
@@ -17,6 +17,6 @@ export default function Story({ story = {} }) {
           <span>{story.date}</span>
         </Styled.Details>
       </Styled.Container>
-    </Link>
+    </div>
   );
 }
