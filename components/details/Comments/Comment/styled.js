@@ -7,6 +7,7 @@ export const Container = styled.div`
   overflow: scroll;
   width: 100%;
   margin-bottom: 20px;
+  margin-top: ${(p) => (p.isNested ? '20px' : '0')};
   &::-webkit-scrollbar {
     display: none;
   }
