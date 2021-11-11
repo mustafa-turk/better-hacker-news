@@ -15,5 +15,4 @@ export const LoadingText = styled.p`
 
 export const NoComment = styled.p`
   color: ${(p) => p.theme.colors.gray[200]};
-  text-align: center;
 `;

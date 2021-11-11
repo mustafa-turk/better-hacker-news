@@ -5,8 +5,8 @@ import { useEffect, useState } from 'react';
 import { fetchStory, fetchTopStoryIds } from 'api/stories';
 import { SplitLayout } from 'components/shared/Layout/styled';
 import Navbar from 'components/shared/Navbar';
-import Stories from 'components/feed/Stories';
-import Story from 'components/feed/Stories/Story';
+import StoriesList from 'components/feed/StoriesList';
+import StoriesListItem from 'components/feed/StoriesList/StoriesListItem';
 import Layout from 'components/shared/Layout';
 import Header from 'components/feed/Header';
 import Details from 'components/details/Details';
@@ -38,10 +38,10 @@ export default function HomePage({ initialStories, storyIds }) {
         <SplitLayout.Left isFullWidth={width < 900}>
           <Header>Hacker News</Header>
           <Navbar />
-          <Stories storyIds={storyIds} initialStories={initialStories}>
+          <StoriesList storyIds={storyIds} initialStories={initialStories}>
             {(stories) =>
               stories.map((story) => (
-                <Story
+                <StoriesListItem
                   key={story.id}
                   story={story}
                   onClick={() => {
@@ -50,7 +50,7 @@ export default function HomePage({ initialStories, storyIds }) {
                 />
               ))
             }
-          </Stories>
+          </StoriesList>
         </SplitLayout.Left>
         <SplitLayout.Right>
           <Details

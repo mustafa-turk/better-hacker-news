@@ -3,7 +3,7 @@ import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 import { fetchStory } from 'api/stories';
 import * as Styled from './styled';
 
-export default function Stories({ initialStories, storyIds, children }) {
+export default function StoriesList({ initialStories, storyIds, children }) {
   const { count, hasReachedEnd } = useInfiniteScroll();
   const [stories, setStories] = useState(initialStories);
 

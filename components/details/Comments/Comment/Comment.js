@@ -6,8 +6,6 @@ import * as Styled from './styled';
 export default function Comment({ comment }) {
   const [hidden, setHidden] = useState(true);
 
-  console.log(comment);
-
   return (
     <Styled.Container>
       <Styled.Author>

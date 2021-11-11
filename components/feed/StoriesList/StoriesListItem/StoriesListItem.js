@@ -1,6 +1,6 @@
 import * as Styled from './styled';
 
-export default function Story({ story = {}, onClick }) {
+export default function StoryListItem({ story = {}, onClick }) {
   return (
     <div onClick={onClick}>
       <Styled.Container>
