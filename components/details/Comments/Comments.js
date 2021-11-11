@@ -27,9 +27,7 @@ export default function CommentsContainer({ storyId, length }) {
   return (
     <>
       <Styled.Title>{length} Comments</Styled.Title>
-      {comments.map((comment) => (
-        <Comment key={comment.id} comment={comment} />
-      ))}
+      {comments.map((comment) => !comment.text || <Comment key={comment.id} comment={comment} />)}
     </>
   );
 }

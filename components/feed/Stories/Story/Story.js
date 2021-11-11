@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import * as Styled from './styled';
 
 export default function Story({ story = {}, onClick }) {
