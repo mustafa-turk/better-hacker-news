@@ -10,15 +10,12 @@ export default createGlobalStyle`
   *:hover {
     transition: 0.3s;
   }
-  html {
-    font-family: inter;
-  }
   body {
     animation: fadeIn ease 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    background: black;
-    font-family: inter;
+    background: #0F0F0F;
+    font-family: 'Roboto';
     color: white;
   }
   body::-webkit-scrollbar {

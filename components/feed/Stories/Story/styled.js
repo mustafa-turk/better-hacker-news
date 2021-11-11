@@ -35,7 +35,6 @@ export const Domain = styled.div`
   align-items: center;
   color: ${(p) => p.theme.colors.gray[200]};
   margin-top: 5px;
-  font-family: 'Roboto Mono', monospace;
 `;
 
 export const CommentsCount = styled.span`

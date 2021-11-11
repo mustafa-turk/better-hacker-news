@@ -4,7 +4,6 @@ export const Container = styled.div`
   border-left: 2px solid ${(p) => p.theme.colors.accent};
   padding-left: 20px;
   margin-right: 10px;
-  font-family: 'Roboto Mono', monospace;
   overflow: scroll;
   width: 100%;
   margin-bottom: 20px;
@@ -17,7 +16,6 @@ export const NestedContainer = styled.div`
   border-left: 2px solid #212328;
   padding-left: 20px;
   margin-right: 10px;
-  font-family: 'Roboto Mono', monospace;
   overflow-wrap: break-word;
   width: 100%;
   margin-top: 20px;

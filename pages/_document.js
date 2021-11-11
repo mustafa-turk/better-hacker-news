@@ -50,11 +50,7 @@ export default class CustomDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap"
-            rel="stylesheet"
-          />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap"
             rel="stylesheet"
           />
           {this.props.styleTags}

@@ -22,7 +22,7 @@ export default function CommentsContainer({ storyId, length }) {
     );
   }
   if (comments.length === 0) {
-    return 'No comments yet';
+    return <Styled.NoComment>No comments yet 😢</Styled.NoComment>;
   }
   return (
     <>

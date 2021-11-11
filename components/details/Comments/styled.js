@@ -12,3 +12,8 @@ export const LoadingComments = styled.div`
 export const LoadingText = styled.p`
   padding-top: 10px;
 `;
+
+export const NoComment = styled.p`
+  color: ${(p) => p.theme.colors.gray[200]};
+  text-align: center;
+`;

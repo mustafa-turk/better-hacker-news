@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Nav = styled.div`
   display: flex;
-  padding: 20px 0 10px;
+  padding: 20px 0 0px;
 `;
 
 export const NavItem = styled.div`
