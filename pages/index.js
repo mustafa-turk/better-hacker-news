@@ -1,63 +1,51 @@
 import Head from 'next/head';
-import { useQuery } from 'react-query';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { fetchStory, fetchTopStoryIds } from 'api/stories';
 import { SplitLayout } from 'components/shared/Layout/styled';
-import Navbar from 'components/shared/Navbar';
-import StoriesList from 'components/feed/StoriesList';
-import StoriesListItem from 'components/feed/StoriesList/StoriesListItem';
+import StoriesList, { StoryListItem } from 'components/feed/StoriesList';
 import Layout from 'components/shared/Layout';
 import Header from 'components/feed/Header';
-import Details from 'components/details/Details';
+import Details from 'components/details/StoryDetails';
 import useWindowSize from 'hooks/useWindowDimensions';
 
-export default function HomePage({ initialStories, storyIds }) {
+export default function HomePage({ storyIds, initStories }) {
   const router = useRouter();
   const [selectedStoryId, setSelectedStoryId] = useState(storyIds[0]);
   const { width } = useWindowSize();
+  const isCompactView = width > 900;
 
-  const {
-    data: selectedStory = {},
-    isLoading: isLoadingSelectedStory,
-    refetch: fetchSelectedStoryDetails,
-  } = useQuery([selectedStoryId], ({ queryKey: storyId }) => fetchStory(storyId), {
-    manual: true,
-  });
-
-  useEffect(() => {
-    fetchSelectedStoryDetails(selectedStoryId);
-  }, [fetchSelectedStoryDetails, selectedStoryId]);
+  function handleStoryClick(storyId) {
+    if (isCompactView) {
+      setSelectedStoryId(storyId);
+    } else {
+      router.push(`/story/${storyId}`);
+    }
+  }
 
   return (
     <Layout>
       <Head>
-        <title>Better Hacker News | Top stories</title>
+        <title>Better Hacker News | Stories</title>
       </Head>
       <SplitLayout.Wrapper>
-        <SplitLayout.Left isFullWidth={width < 900}>
+        <SplitLayout.Left showPartialView={isCompactView}>
           <Header>Hacker News</Header>
-          <Navbar />
-          <StoriesList storyIds={storyIds} initialStories={initialStories}>
+          <StoriesList storyIds={storyIds} initStories={initStories}>
             {(stories) =>
               stories.map((story) => (
-                <StoriesListItem
+                <StoryListItem
                   key={story.id}
                   story={story}
-                  onClick={() => {
-                    width < 900 ? router.push(`/story/${story.id}`) : setSelectedStoryId(story.id);
-                  }}
+                  isActive={story.id === selectedStoryId}
+                  onClick={() => handleStoryClick(story.id)}
                 />
               ))
             }
           </StoriesList>
         </SplitLayout.Left>
         <SplitLayout.Right>
-          <Details
-            storyId={selectedStoryId}
-            story={selectedStory}
-            isLoading={isLoadingSelectedStory}
-          />
+          <Details storyId={selectedStoryId} />
         </SplitLayout.Right>
       </SplitLayout.Wrapper>
     </Layout>
@@ -66,8 +54,8 @@ export default function HomePage({ initialStories, storyIds }) {
 
 export async function getServerSideProps() {
   const storyIds = await fetchTopStoryIds();
-  const initialStories = await Promise.all(
+  const initStories = await Promise.all(
     storyIds.slice(0, 30).map((storyId) => fetchStory(storyId)),
   );
-  return { props: { storyIds, initialStories } };
+  return { props: { storyIds, initStories } };
 }

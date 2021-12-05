@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Details from 'components/details/Details';
+import Details from 'components/details/StoryDetails';
 import { useQuery } from 'react-query';
 import { fetchStory } from 'api/stories';
 import { DetailsLayout } from 'components/shared/Layout/styled';

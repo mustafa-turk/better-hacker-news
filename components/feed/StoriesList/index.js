@@ -1,1 +1,1 @@
-export { default } from './StoriesList';
+export { default, StoryListItem } from './StoriesList';

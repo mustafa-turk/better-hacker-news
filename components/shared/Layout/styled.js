@@ -18,8 +18,8 @@ export const SplitLayout = {
   Left: styled.div`
     height: 100vh;
     overflow-y: scroll;
-    min-width: ${(p) => (p.isFullWidth ? '100%' : '300px')};
-    max-width: ${(p) => (p.isFullWidth ? '100%' : '300px')};
+    min-width: ${(p) => (p.showPartialView ? '350px' : '100%')};
+    max-width: ${(p) => (p.showPartialView ? '350px' : '100%')};
     padding: 20px;
   `,
   Right: styled.div`

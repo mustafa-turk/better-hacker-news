@@ -3,9 +3,9 @@ import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
 import { fetchStory } from 'api/stories';
 import * as Styled from './styled';
 
-export default function StoriesList({ initialStories, storyIds, children }) {
+export default function StoriesList({ initStories, storyIds, children }) {
   const { count, hasReachedEnd } = useInfiniteScroll();
-  const [stories, setStories] = useState(initialStories);
+  const [stories, setStories] = useState(initStories);
 
   useEffect(() => {
     if (count > 30) {
@@ -23,6 +23,26 @@ export default function StoriesList({ initialStories, storyIds, children }) {
     <div>
       {children(stories)}
       {hasReachedEnd || <Styled.Loading>Loading more stories...</Styled.Loading>}
+    </div>
+  );
+}
+
+export function StoryListItem({ story = {}, onClick, isActive }) {
+  return (
+    <div onClick={onClick}>
+      <Styled.Comment isActive={isActive}>
+        <Styled.Title>{story.title}</Styled.Title>
+        {story.domain ? (
+          <Styled.Domain>
+            <Styled.DomainIcon /> {story.domain}
+          </Styled.Domain>
+        ) : null}
+        <Styled.Details>
+          <Styled.CommentsCount>{story.descendants} comments</Styled.CommentsCount>
+          <span>•</span>
+          <span>{story.date}</span>
+        </Styled.Details>
+      </Styled.Comment>
     </div>
   );
 }

@@ -1,7 +1,24 @@
 import styled from 'styled-components';
 
+export const Title = styled.h3`
+  margin-bottom: 20px;
+  font-size: 17px;
+`;
+
+export const LoadingComments = styled.div`
+  color: ${(p) => p.theme.colors.gray[200]};
+`;
+
+export const LoadingText = styled.p`
+  padding-top: 10px;
+`;
+
+export const NoComment = styled.p`
+  color: ${(p) => p.theme.colors.gray[200]};
+`;
+
 export const Container = styled.div`
-  border-left: 2px solid ${(p) => p.theme.colors.accent};
+  border-left: 2px solid ${(p) => (p.isNested ? p.theme.colors.gray[100] : p.theme.colors.accent)};
   padding-left: 20px;
   margin-right: 10px;
   overflow: scroll;
@@ -31,6 +48,9 @@ export const Content = styled.div`
   p {
     margin-bottom: 20px !important;
   }
+  p:last-child {
+    margin-bottom: 0px !important;
+  }
   a:link {
     padding: 0 2px;
     border-radius: 1px;
@@ -46,4 +66,5 @@ export const Button = styled.button`
   color: ${(p) => p.theme.colors.gray[200]};
   cursor: pointer;
   font-size: 14px;
+  margin-top: 20px;
 `;
