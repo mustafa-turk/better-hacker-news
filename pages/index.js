@@ -12,8 +12,7 @@ import useWindowSize from 'hooks/useWindowDimensions';
 export default function HomePage({ storyIds, initStories }) {
   const router = useRouter();
   const [selectedStoryId, setSelectedStoryId] = useState(storyIds[0]);
-  const { width } = useWindowSize();
-  const isCompactView = width > 900;
+  const { isCompactView } = useWindowSize();
 
   function handleStoryClick(storyId) {
     if (isCompactView) {
@@ -37,7 +36,7 @@ export default function HomePage({ storyIds, initStories }) {
                 <StoryListItem
                   key={story.id}
                   story={story}
-                  isActive={story.id === selectedStoryId}
+                  isActive={story.id === selectedStoryId && isCompactView}
                   onClick={() => handleStoryClick(story.id)}
                 />
               ))

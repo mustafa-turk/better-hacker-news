@@ -16,5 +16,7 @@ export default function useWindowSize() {
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  return windowSize;
+  return {
+    isCompactView: windowSize.width > 900,
+  };
 }
