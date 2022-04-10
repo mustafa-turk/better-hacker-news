@@ -1,6 +1,6 @@
 import Skeleton from 'react-loading-skeleton';
 import moment from 'moment';
-import CommentsContainer from '../CommentsContainer';
+import CommentsContainer from '../comments-container';
 import { LinkIcon } from 'components/shared/Icon';
 import * as Styled from './styled';
 import { useQuery } from 'react-query';
@@ -23,25 +23,26 @@ export default function StoryDetails({ storyId }) {
     refetch(storyId);
   }, [refetch, storyId]);
 
+  const { title, url, time, domain, descendants, by } = story;
+  const metadata = `${by} • ${moment(new Date(time * 1000)).fromNow()}`;
+
   return (
     <ErrorBoundary isError={isError}>
       <Styled.Header>
-        <Styled.Title>{isLoading ? <Skeleton /> : story.title}</Styled.Title>
-        <Styled.Source href={story.url} target="_blank" rel="noopener">
+        <Styled.Title>{isLoading ? <Skeleton /> : title}</Styled.Title>
+        <Styled.Source href={url} target="_blank" rel="noopener">
           {isLoading ? (
             <Skeleton />
           ) : (
             <>
               <LinkIcon size="19px" />
-              <div>{story.domain}</div>
+              <div>{domain}</div>
             </>
           )}
         </Styled.Source>
-        <Styled.MetaData>
-          {isLoading ? <Skeleton /> : moment(new Date(story.time * 1000)).fromNow()}
-        </Styled.MetaData>
+        <Styled.MetaData>{isLoading ? <Skeleton /> : metadata}</Styled.MetaData>
       </Styled.Header>
-      <CommentsContainer storyId={storyId} length={story.descendants} />
+      <CommentsContainer storyId={storyId} length={descendants} />
     </ErrorBoundary>
   );
 }

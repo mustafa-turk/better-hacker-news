@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useInfiniteScroll } from 'hooks/useInfiniteScroll';
+import { useInfiniteScroll } from 'components/feed/stories-list/useInfiniteScroll';
 import { fetchStory } from 'api/stories';
 import * as Styled from './styled';
+import useWindowSize from 'hooks/useWindowDimensions';
 
 export default function StoriesList({ initStories, storyIds, children }) {
   const { count, hasReachedEnd } = useInfiniteScroll();
@@ -32,9 +33,10 @@ export default function StoriesList({ initStories, storyIds, children }) {
 }
 
 export function StoryListItem({ story = {}, onClick, isActive }) {
+  const { isMobile } = useWindowSize();
   return (
     <div onClick={onClick}>
-      <Styled.Comment isActive={isActive}>
+      <Styled.Comment isActive={isActive && !isMobile}>
         <Styled.Title>{story.title}</Styled.Title>
         {story.domain ? (
           <Styled.Domain>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useWindowSize() {
+function useWindowSize() {
   const [windowSize, setWindowSize] = useState({
     width: undefined,
     height: undefined,
@@ -17,6 +17,8 @@ export default function useWindowSize() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   return {
-    isCompactView: windowSize.width > 900,
+    isMobile: windowSize.width > 900,
   };
 }
+
+export default useWindowSize;

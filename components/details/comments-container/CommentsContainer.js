@@ -24,7 +24,7 @@ export default function CommentsContainer({ storyId, length }) {
       </Styled.LoadingComments>
     );
   }
-  if (comments.length === 0) {
+  if (!comments || comments.length === 0) {
     return <Styled.NoComment>No comments yet 😢</Styled.NoComment>;
   }
   return (

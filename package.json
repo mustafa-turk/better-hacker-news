@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "@emotion/babel-plugin": "^11.3.0",
+    "@reduxjs/toolkit": "^1.8.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "next": "^12.0.1",
