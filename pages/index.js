@@ -35,7 +35,10 @@ export default function HomePage({ storyIds, initStories }) {
       <SplitLayout.Wrapper>
         <SplitLayout.Left showPartialView={isCompactView}>
           <Header>
-            <Header.Item onClick={() => router.push('?mode=top')} isActive={mode === 'top'}>
+            <Header.Item
+              onClick={() => router.push('?mode=top')}
+              isActive={mode === 'top' || !mode}
+            >
               Top
             </Header.Item>
             <Header.Item onClick={() => router.push('?mode=new')} isActive={mode === 'new'}>
