@@ -1,18 +1,23 @@
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { fetchStory, fetchTopStoryIds } from 'api/stories';
+import { useState, useEffect } from 'react';
+import { fetchNewStoryIds, fetchStory, fetchTopStoryIds } from 'api/stories';
 import { SplitLayout } from 'components/shared/Layout/styled';
 import StoriesList, { StoryListItem } from 'components/feed/StoriesList';
 import Layout from 'components/shared/Layout';
 import Header from 'components/feed/Header';
 import Details from 'components/details/StoryDetails';
 import useWindowSize from 'hooks/useWindowDimensions';
+import { useRouter } from 'next/router';
 
 export default function HomePage({ storyIds, initStories }) {
   const router = useRouter();
+  const { mode } = router.query;
   const [selectedStoryId, setSelectedStoryId] = useState(storyIds[0]);
   const { isCompactView } = useWindowSize();
+
+  useEffect(() => {
+    setSelectedStoryId(storyIds[0]);
+  }, [storyIds]);
 
   function handleStoryClick(storyId) {
     if (isCompactView) {
@@ -29,7 +34,14 @@ export default function HomePage({ storyIds, initStories }) {
       </Head>
       <SplitLayout.Wrapper>
         <SplitLayout.Left showPartialView={isCompactView}>
-          <Header>Hacker News</Header>
+          <Header>
+            <Header.Item onClick={() => router.push('?mode=top')} isActive={mode === 'top'}>
+              Top
+            </Header.Item>
+            <Header.Item onClick={() => router.push('?mode=new')} isActive={mode === 'new'}>
+              New
+            </Header.Item>
+          </Header>
           <StoriesList storyIds={storyIds} initStories={initStories}>
             {(stories) =>
               stories.map((story) => (
@@ -51,8 +63,14 @@ export default function HomePage({ storyIds, initStories }) {
   );
 }
 
-export async function getServerSideProps() {
-  const storyIds = await fetchTopStoryIds();
+export async function getServerSideProps(context) {
+  const mode = context.query?.mode;
+  let storyIds = [];
+  if (mode === 'new') {
+    storyIds = await fetchNewStoryIds();
+  } else {
+    storyIds = await fetchTopStoryIds();
+  }
   const initStories = await Promise.all(
     storyIds.slice(0, 30).map((storyId) => fetchStory(storyId)),
   );

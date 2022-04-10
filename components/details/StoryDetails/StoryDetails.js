@@ -6,14 +6,17 @@ import * as Styled from './styled';
 import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { fetchStory } from 'api/stories';
+import ErrorBoundary from 'components/shared/ErrorBoundary';
 
 export default function StoryDetails({ storyId }) {
   const {
     data: story = {},
     isLoading,
     refetch,
+    isError,
   } = useQuery([storyId], ({ queryKey: storyId }) => fetchStory(storyId), {
     manual: true,
+    retry: false,
   });
 
   useEffect(() => {
@@ -21,7 +24,7 @@ export default function StoryDetails({ storyId }) {
   }, [refetch, storyId]);
 
   return (
-    <>
+    <ErrorBoundary isError={isError}>
       <Styled.Header>
         <Styled.Title>{isLoading ? <Skeleton /> : story.title}</Styled.Title>
         <Styled.Source href={story.url} target="_blank" rel="noopener">
@@ -39,6 +42,6 @@ export default function StoryDetails({ storyId }) {
         </Styled.MetaData>
       </Styled.Header>
       <CommentsContainer storyId={storyId} length={story.descendants} />
-    </>
+    </ErrorBoundary>
   );
 }

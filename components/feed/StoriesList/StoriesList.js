@@ -19,6 +19,10 @@ export default function StoriesList({ initStories, storyIds, children }) {
     }
   }, [storyIds, count]);
 
+  useEffect(() => {
+    setStories(initStories);
+  }, [initStories]);
+
   return (
     <div>
       {children(stories)}

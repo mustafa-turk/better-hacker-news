@@ -5,6 +5,7 @@ import * as Styled from './styled';
 import { useState } from 'react';
 import moment from 'moment';
 import { isEmpty, map } from 'lodash';
+import { CommentIcon } from 'components/shared/Icon';
 
 export default function CommentsContainer({ storyId, length }) {
   const { data: comments, isLoading } = useQuery(
@@ -28,7 +29,10 @@ export default function CommentsContainer({ storyId, length }) {
   }
   return (
     <>
-      <Styled.Title>{length} Comments</Styled.Title>
+      <Styled.Title>
+        <CommentIcon />
+        {length} Comments
+      </Styled.Title>
       {comments.map((comment) => !comment.text || <Comment key={comment.id} comment={comment} />)}
     </>
   );

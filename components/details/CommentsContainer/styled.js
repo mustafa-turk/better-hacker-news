@@ -3,6 +3,13 @@ import styled from 'styled-components';
 export const Title = styled.h3`
   margin-bottom: 20px;
   font-size: 17px;
+  color: #fafafa;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  svg {
+    margin-right: 5px;
+  }
 `;
 
 export const LoadingComments = styled.div`
@@ -56,6 +63,7 @@ export const Content = styled.div`
     border-radius: 1px;
     background: ${(p) => p.theme.colors.gray[100]};
   }
+  color: #fafafa;
 `;
 
 export const Button = styled.button`

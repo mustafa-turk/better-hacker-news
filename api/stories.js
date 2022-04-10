@@ -17,12 +17,16 @@ export async function fetchNewStoryIds() {
 export async function fetchStory(storyId) {
   const STORY_URL = `${BASE_URL}/item`;
   const result = await fetch(`${STORY_URL}/${storyId}.json`);
+
   const story = await result.json();
-  return {
-    ...story,
-    domain: story?.url ? new URL(story.url).hostname : null,
-    date: moment(new Date(story?.time * 1000)).fromNow(),
-  };
+  if (story) {
+    return {
+      ...story,
+      domain: story?.url ? new URL(story.url).hostname : null,
+      date: moment(new Date(story?.time * 1000)).fromNow(),
+    };
+  }
+  return Promise.reject();
 }
 
 export async function fetchComments(storyId) {

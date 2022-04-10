@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Header = styled.div`
   padding-bottom: 10px;
   margin-bottom: 30px;
+  border-bottom: 1px solid ${(p) => p.theme.colors.gray[100]};
 `;
 
 export const Title = styled.h1`
