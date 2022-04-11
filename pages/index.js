@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
+import Navbar from 'components/feed/navbar';
 import SplitLayout from 'components/shared/layouts/split-layout';
 import StoriesList from 'components/feed/stories-list';
-import Navbar from 'components/feed/navbar';
-import Details from 'components/details/story-details';
+import StoryDetails from 'components/details/story-details';
 
 import { fetchStories, fetchStoryIds } from 'api/stories';
 import useWindowSize from 'hooks/useWindowDimensions';
@@ -53,7 +53,7 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
       </SplitLayout.Left>
 
       <SplitLayout.Right>
-        <Details storyId={selectedStoryId} />
+        <StoryDetails storyId={selectedStoryId} />
       </SplitLayout.Right>
     </SplitLayout>
   );

@@ -33,12 +33,12 @@ export default function StoryDetails({ storyId }) {
         <Styled.Source href={url} target="_blank" rel="noopener">
           {isLoading ? (
             <Skeleton />
-          ) : (
+          ) : domain ? (
             <>
               <LinkIcon size="19px" />
               <div>{domain}</div>
             </>
-          )}
+          ) : null}
         </Styled.Source>
         <Styled.MetaData>{isLoading ? <Skeleton /> : metadata}</Styled.MetaData>
       </Styled.Header>

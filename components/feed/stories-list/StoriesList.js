@@ -21,16 +21,16 @@ function StoriesList({ initialStories, storyIds, children }) {
   }
 
   return (
-    <>
+    <Styled.List>
       {children(stories)}
-      <Styled.LoadButton onClick={getStories}>Load More</Styled.LoadButton>
-    </>
+      <Styled.LoadButton onClick={getStories}>More stories</Styled.LoadButton>
+    </Styled.List>
   );
 }
 
 function StoryListItem({ story = {}, onClick }) {
   return (
-    <div onClick={onClick}>
+    <Styled.ListItem onClick={onClick}>
       <Styled.Comment>
         <Styled.Title>{story.title}</Styled.Title>
         {story.domain ? (
@@ -44,7 +44,7 @@ function StoryListItem({ story = {}, onClick }) {
           <span>{story.date}</span>
         </Styled.Details>
       </Styled.Comment>
-    </div>
+    </Styled.ListItem>
   );
 }
 

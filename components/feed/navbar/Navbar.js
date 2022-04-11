@@ -1,14 +1,14 @@
 import * as Styled from './styled';
 
 function Navbar({ children }) {
-  return <Styled.Header>{children}</Styled.Header>;
+  return <Styled.Navbar>{children}</Styled.Navbar>;
 }
 
 function NavbarItem({ children, isActive, onClick }) {
   return (
-    <Styled.Item isActive={isActive} onClick={onClick}>
+    <Styled.NavbarItem isActive={isActive} onClick={onClick}>
       {children}
-    </Styled.Item>
+    </Styled.NavbarItem>
   );
 }
 

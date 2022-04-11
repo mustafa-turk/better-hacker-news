@@ -1,11 +1,22 @@
 import styled from 'styled-components';
 import { LinkIcon } from 'components/shared/Icon';
 
-export const Loading = styled.div`
+export const List = styled.div`
   text-align: center;
 `;
 
-export const LoadButton = styled.button``;
+export const LoadButton = styled.button`
+  background: ${(p) => p.theme.colors.accent};
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  font-size: 14px;
+  border-radius: 30px;
+  &:hover {
+    background: ${(p) => p.theme.colors.accentDarker};
+    cursor: pointer;
+  }
+`;
 
 export const Comment = styled.div`
   cursor: pointer;
@@ -26,6 +37,10 @@ export const Details = styled.div`
   span {
     margin-right: 10px;
   }
+`;
+
+export const ListItem = styled.div`
+  text-align: left;
 `;
 
 export const DomainIcon = styled(LinkIcon)`
