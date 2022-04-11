@@ -1,16 +1,19 @@
 import moment from 'moment';
 
 const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
+const TOP_STORY_IDS_URL = `${BASE_URL}/topstories.json`;
+const NEW_STORY_IDS_URL = `${BASE_URL}/newstories.json`;
 
-export async function fetchTopStoryIds() {
-  const TOP_STORY_IDS_URL = `${BASE_URL}/topstories.json`;
-  const result = await fetch(TOP_STORY_IDS_URL);
-  return await result.json();
-}
-
-export async function fetchNewStoryIds() {
-  const NEW_STORY_IDS_URL = `${BASE_URL}/newstories.json`;
-  const result = await fetch(NEW_STORY_IDS_URL);
+export async function fetchStoryIds({ mode }) {
+  let result;
+  switch (mode) {
+    case 'new':
+      result = await fetch(NEW_STORY_IDS_URL);
+      break;
+    default:
+      result = await fetch(TOP_STORY_IDS_URL);
+      break;
+  }
   return await result.json();
 }
 
@@ -27,6 +30,11 @@ export async function fetchStory(storyId) {
     };
   }
   return Promise.reject();
+}
+
+export async function fetchStories({ storyIds, from, to }) {
+  const stories = await Promise.all(storyIds.slice(from, to).map((storyId) => fetchStory(storyId)));
+  return stories;
 }
 
 export async function fetchComments(storyId) {

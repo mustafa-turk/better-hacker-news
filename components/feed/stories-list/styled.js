@@ -5,6 +5,8 @@ export const Loading = styled.div`
   text-align: center;
 `;
 
+export const LoadButton = styled.button``;
+
 export const Comment = styled.div`
   cursor: pointer;
   margin: 20px 0;

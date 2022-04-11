@@ -1,6 +1,6 @@
 import * as Styled from './styled';
 
-function Header({ children }) {
+function Navbar({ children }) {
   return <Styled.Header>{children}</Styled.Header>;
 }
 
@@ -12,6 +12,6 @@ function Item({ children, isActive, onClick }) {
   );
 }
 
-Header.Item = Item;
+Navbar.Item = Item;
 
-export default Header;
+export default Navbar;

@@ -9,8 +9,8 @@ export const SplitLayout = styled.div`
 export const SplitLayoutLeft = styled.div`
   height: 100vh;
   overflow-y: scroll;
-  min-width: ${(p) => (p.showPartialView ? '350px' : '100%')};
-  max-width: ${(p) => (p.showPartialView ? '350px' : '100%')};
+  min-width: ${(p) => (p.only ? '350px' : '100%')};
+  max-width: ${(p) => (p.only ? '350px' : '100%')};
   padding: 20px;
 `;
 

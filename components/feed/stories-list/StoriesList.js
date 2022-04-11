@@ -1,42 +1,37 @@
 import { useEffect, useState } from 'react';
-import { useInfiniteScroll } from 'components/feed/stories-list/useInfiniteScroll';
-import { fetchStory } from 'api/stories';
+import { fetchStories } from 'api/stories';
 import * as Styled from './styled';
-import useWindowSize from 'hooks/useWindowDimensions';
 
-export default function StoriesList({ initStories, storyIds, children }) {
-  const { count, hasReachedEnd } = useInfiniteScroll();
-  const [stories, setStories] = useState(initStories);
+import { BATCH_AMOUNT } from 'utils/constants';
 
-  useEffect(() => {
-    if (count > 30) {
-      async function fetchStories() {
-        const newStories = await Promise.all(
-          storyIds.slice(count, count + 30).map((storyId) => fetchStory(storyId)),
-        );
-        setStories((prevStories) => [...prevStories, ...newStories]);
-      }
-      fetchStories();
-    }
-  }, [storyIds, count]);
+function StoriesList({ initialStories, storyIds, children }) {
+  const [stories, setStories] = useState([]);
 
   useEffect(() => {
-    setStories(initStories);
-  }, [initStories]);
+    setStories(initialStories);
+  }, [initialStories]);
+
+  async function getStories() {
+    const newStories = await fetchStories({
+      storyIds,
+      from: stories.length,
+      to: stories.length + BATCH_AMOUNT,
+    });
+    setStories((prevStories) => [...prevStories, ...newStories]);
+  }
 
   return (
-    <div>
+    <>
       {children(stories)}
-      {hasReachedEnd || <Styled.Loading>Loading more stories...</Styled.Loading>}
-    </div>
+      <Styled.LoadButton onClick={getStories}>Load More</Styled.LoadButton>
+    </>
   );
 }
 
-export function StoryListItem({ story = {}, onClick, isActive }) {
-  const { isMobile } = useWindowSize();
+function StoryListItem({ story = {}, onClick }) {
   return (
     <div onClick={onClick}>
-      <Styled.Comment isActive={isActive && !isMobile}>
+      <Styled.Comment>
         <Styled.Title>{story.title}</Styled.Title>
         {story.domain ? (
           <Styled.Domain>
@@ -52,3 +47,7 @@ export function StoryListItem({ story = {}, onClick, isActive }) {
     </div>
   );
 }
+
+StoriesList.Item = StoryListItem;
+
+export default StoriesList;

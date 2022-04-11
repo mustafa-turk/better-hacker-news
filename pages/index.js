@@ -1,22 +1,22 @@
-import Head from 'next/head';
-import { useState, useEffect } from 'react';
-import { fetchNewStoryIds, fetchStory, fetchTopStoryIds } from 'api/stories';
-import SplitLayout from 'components/shared/layouts/split-layout';
-import StoriesList, { StoryListItem } from 'components/feed/stories-list';
-import Header from 'components/feed/header';
-import Details from 'components/details/story-details';
-import useWindowSize from 'hooks/useWindowDimensions';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
-export default function HomePage({ storyIds, initStories }) {
+import SplitLayout from 'components/shared/layouts/split-layout';
+import StoriesList from 'components/feed/stories-list';
+import Navbar from 'components/feed/navbar';
+import Details from 'components/details/story-details';
+
+import { fetchStories, fetchStoryIds } from 'api/stories';
+import useWindowSize from 'hooks/useWindowDimensions';
+
+export default function HomePage({ storyIds, stories, initialSelectedStoryId }) {
   const router = useRouter();
   const { mode } = router.query;
-  const { isMobile } = useWindowSize();
-  const [selectedStoryId, setSelectedStoryId] = useState([]);
 
-  useEffect(() => {
-    setSelectedStoryId(storyIds[0]);
-  }, [storyIds]);
+  const { isMobile } = useWindowSize();
+
+  const [selectedStoryId, setSelectedStoryId] = useState(initialSelectedStoryId);
 
   function handleStoryClick(storyId) {
     if (isMobile) {
@@ -32,22 +32,21 @@ export default function HomePage({ storyIds, initStories }) {
         <title>Better Hacker News | Stories</title>
       </Head>
 
-      <SplitLayout.Left showPartialView={isMobile}>
-        <Header>
-          <Header.Item onClick={() => router.push('?mode=top')} isActive={mode === 'top' || !mode}>
+      <SplitLayout.Left only={isMobile}>
+        <Navbar>
+          <Navbar.Item onClick={() => router.push('?mode=top')} isActive={mode === 'top' || !mode}>
             Top
-          </Header.Item>
-          <Header.Item onClick={() => router.push('?mode=new')} isActive={mode === 'new'}>
+          </Navbar.Item>
+          <Navbar.Item onClick={() => router.push('?mode=new')} isActive={mode === 'new'}>
             New
-          </Header.Item>
-        </Header>
-        <StoriesList storyIds={storyIds} initStories={initStories}>
+          </Navbar.Item>
+        </Navbar>
+        <StoriesList storyIds={storyIds} initialStories={stories}>
           {(stories) =>
             stories.map((story) => (
-              <StoryListItem
+              <StoriesList.Item
                 key={story.id}
                 story={story}
-                isActive={story.id === selectedStoryId}
                 onClick={() => handleStoryClick(story.id)}
               />
             ))
@@ -63,15 +62,8 @@ export default function HomePage({ storyIds, initStories }) {
 }
 
 export async function getServerSideProps(context) {
-  const mode = context.query?.mode;
-  let storyIds = [];
-  if (mode === 'new') {
-    storyIds = await fetchNewStoryIds();
-  } else {
-    storyIds = await fetchTopStoryIds();
-  }
-  const initStories = await Promise.all(
-    storyIds.slice(0, 30).map((storyId) => fetchStory(storyId)),
-  );
-  return { props: { storyIds, initStories } };
+  const storyIds = await fetchStoryIds({ mode: context.query?.mode });
+  const stories = await fetchStories({ from: 0, to: 30, storyIds });
+  const initialSelectedStoryId = storyIds[0];
+  return { props: { storyIds, stories, initialSelectedStoryId } };
 }
