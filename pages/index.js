@@ -13,10 +13,8 @@ import useWindowSize from 'hooks/useWindowDimensions';
 export default function HomePage({ storyIds, stories, initialSelectedStoryId }) {
   const router = useRouter();
   const { mode } = router.query;
-
-  const { isMobile } = useWindowSize();
-
   const [selectedStoryId, setSelectedStoryId] = useState(initialSelectedStoryId);
+  const { isMobile } = useWindowSize();
 
   function handleStoryClick(storyId) {
     if (isMobile) {

@@ -4,7 +4,7 @@ function Navbar({ children }) {
   return <Styled.Header>{children}</Styled.Header>;
 }
 
-function Item({ children, isActive, onClick }) {
+function NavbarItem({ children, isActive, onClick }) {
   return (
     <Styled.Item isActive={isActive} onClick={onClick}>
       {children}
@@ -12,6 +12,6 @@ function Item({ children, isActive, onClick }) {
   );
 }
 
-Navbar.Item = Item;
+Navbar.Item = NavbarItem;
 
 export default Navbar;
