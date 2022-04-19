@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
+import styled from 'styled-components';
+
 import Navbar from 'components/feed/navbar';
 import SplitLayout from 'components/shared/layouts/split-layout';
 import StoriesList from 'components/feed/stories-list';
@@ -27,10 +29,11 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
   return (
     <SplitLayout>
       <Head>
-        <title>Better Hacker News | Stories</title>
+        <title>(Better) Hacker News | Stories</title>
       </Head>
 
       <SplitLayout.Left only={isMobile}>
+        <Logo>(Better) Hacker News</Logo>
         <Navbar>
           <Navbar.Item onClick={() => router.push('?mode=top')} isActive={mode === 'top' || !mode}>
             Top
@@ -65,3 +68,9 @@ export async function getServerSideProps(context) {
   const initialSelectedStoryId = storyIds[0];
   return { props: { storyIds, stories, initialSelectedStoryId } };
 }
+
+const Logo = styled.p`
+  font-family: Jetbrains Mono;
+  padding-bottom: 25px;
+  opacity: 0.9;
+`;
