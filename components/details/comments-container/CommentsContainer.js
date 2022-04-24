@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import { fetchComments } from 'api/stories';
 import Comment from './Comment';
+import { colors } from 'config';
 
 export default function CommentsContainer({ storyId, length }) {
   const { data: comments, isLoading } = useQuery(
@@ -38,5 +39,5 @@ const Container = styled.div`
 `;
 
 const CommentsContainerEmptyText = styled.p`
-  color: ${(p) => p.theme.colors.gray[600]};
+  color: ${colors.gray[600]};
 `;

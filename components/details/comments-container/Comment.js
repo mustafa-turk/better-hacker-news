@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import { useState } from 'react';
 import { isEmpty, map } from 'lodash';
+import { colors } from 'config';
 import { CollapseIcon, ExpandIcon } from 'components/shared/Icon';
 
 export default function Comment({ comment, isNested }) {
@@ -42,8 +43,7 @@ export default function Comment({ comment, isNested }) {
 }
 
 const Container = styled.div`
-  border-left: 2px solid
-    ${(p) => (p.isNested ? p.theme.colors.gray[600] : p.theme.colors.blue[500])};
+  border-left: 2px solid ${(p) => (p.isNested ? colors.gray[600] : colors.blue[500])};
   padding-left: 20px;
   margin-right: 10px;
   overflow: scroll;
@@ -55,21 +55,21 @@ const Container = styled.div`
 `;
 
 const CommentDeletedText = styled.p`
-  color: ${(p) => p.theme.colors.gray[600]};
+  color: ${colors.gray[600]};
   font-style: italic;
 `;
 
 const CommentAuthor = styled.div`
-  color: ${(p) => p.theme.colors.gray[500]};
+  color: ${colors.gray[500]};
   margin-bottom: 10px;
 `;
 
 const CommentButton = styled.button`
   padding: 5px 10px;
   border-radius: 12px;
-  background: ${(p) => p.theme.colors.gray[900]};
-  border: 1px solid ${(p) => p.theme.colors.gray[800]};
-  color: ${(p) => p.theme.colors.gray[300]};
+  background: ${colors.gray[900]};
+  border: 1px solid ${colors.gray[800]};
+  color: ${colors.gray[300]};
   cursor: pointer;
   font-size: 14px;
   margin-top: 20px;
@@ -77,7 +77,7 @@ const CommentButton = styled.button`
   align-items: center;
   gap: 6px;
   &:hover {
-    background: ${(p) => p.theme.colors.gray[800]};
+    background: ${colors.gray[800]};
   }
 `;
 
@@ -91,7 +91,7 @@ const CommentText = styled.div`
   a:link {
     padding: 0 2px;
     border-radius: 1px;
-    color: ${(p) => p.theme.colors.blue[500]};
+    color: ${colors.blue[500]};
   }
-  color: ${(p) => p.theme.colors.gray[100]};
+  color: ${colors.gray[100]};
 `;

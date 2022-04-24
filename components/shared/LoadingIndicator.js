@@ -1,5 +1,5 @@
 import { Oval } from 'react-loader-spinner';
-import theme from 'styles/theme';
+import { colors } from 'config';
 
 export default function LoadingIndicator() {
   return (
@@ -8,7 +8,7 @@ export default function LoadingIndicator() {
       height={20}
       width={20}
       strokeWidth={5}
-      color={theme.colors.gray[400]}
+      color={colors.gray[400]}
       secondaryColor={theme.colors.gray[500]}
     />
   );

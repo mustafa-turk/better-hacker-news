@@ -7,6 +7,7 @@ import { BATCH_AMOUNT } from 'utils/constants';
 import StoryListItem from './StoriesListItem';
 import LoadingIndicator from 'components/shared/LoadingIndicator';
 import Text from 'components/shared/Text';
+import { colors } from 'config';
 
 function StoriesList({ initialStories, storyIds, children }) {
   const [stories, setStories] = useState([]);
@@ -45,9 +46,9 @@ const Container = styled.div`
 `;
 
 const StoriesListLoadButton = styled.button`
-  background: ${(p) => p.theme.colors.gray[900]};
-  border: 1px solid ${(p) => p.theme.colors.gray[800]};
-  color: ${(p) => p.theme.colors.gray[300]};
+  background: ${colors.gray[900]};
+  border: 1px solid ${colors.gray[800]};
+  color: ${colors.gray[300]};
   padding: 10px 30px;
   font-size: 14px;
   border-radius: 10px;
@@ -57,7 +58,7 @@ const StoriesListLoadButton = styled.button`
   gap: 20px;
   height: 40px;
   &:hover {
-    background: ${(p) => p.theme.colors.gray[800]};
+    background: ${colors.gray[800]};
     cursor: pointer;
   }
 `;

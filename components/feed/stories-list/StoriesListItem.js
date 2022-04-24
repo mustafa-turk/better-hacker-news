@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { LinkIcon } from 'components/shared/Icon';
+import { colors } from 'config';
 
 export default function StoryListItem({ story = {}, onClick }) {
   return (
@@ -22,7 +23,7 @@ export default function StoryListItem({ story = {}, onClick }) {
 }
 
 const Container = styled.div`
-  background: ${(p) => (p.isActive ? p.theme.colors.gray[100] : 'none')};
+  background: ${(p) => (p.isActive ? colors.gray[100] : 'none')};
   cursor: pointer;
   padding: 8px;
   display: flex;
@@ -38,16 +39,16 @@ const StoryListItemTitle = styled.p`
 const StoryListItemDomain = styled.div`
   display: flex;
   align-items: center;
-  color: ${(p) => p.theme.colors.gray[200]};
+  color: ${colors.gray[200]};
 `;
 
 const StoryListItemDomainIcon = styled(LinkIcon)`
   margin-right: 5px;
-  color: ${(p) => p.theme.colors.gray[200]};
+  color: ${colors.gray[200]};
 `;
 
 const StoryListItemMetaData = styled.div`
-  color: ${(p) => p.theme.colors.gray[500]};
+  color: ${colors.gray[500]};
   display: flex;
   gap: 8px;
 `;

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { fetchStory } from 'api/stories';
+import { colors } from 'config';
 
 import CommentsContainer from 'components/details/comments-container/CommentsContainer';
 import ErrorBoundary from 'components/shared/ErrorBoundary';
@@ -51,7 +52,7 @@ export default function StoryDetails({ storyId }) {
 export const StoryDetailsHeader = styled.div`
   padding-bottom: 10px;
   margin-bottom: 30px;
-  border-bottom: 1px solid ${(p) => p.theme.colors.gray[800]};
+  border-bottom: 1px solid ${colors.gray[800]};
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -63,7 +64,7 @@ export const StoryDetailsTitle = styled.h1`
 `;
 
 export const StoryDetailsSource = styled.a`
-  color: ${(p) => p.theme.colors.blue[500]};
+  color: ${colors.blue[500]};
   display: flex;
   svg {
     margin-right: 5px;
@@ -71,5 +72,5 @@ export const StoryDetailsSource = styled.a`
 `;
 
 export const StoryDetailsMetaData = styled.div`
-  color: ${(p) => p.theme.colors.gray[500]};
+  color: ${colors.gray[500]};
 `;
