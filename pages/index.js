@@ -2,19 +2,15 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import styled from 'styled-components';
-
-import Navbar from 'components/feed/navbar';
-import SplitLayout from 'components/shared/layouts/split-layout';
-import StoriesList from 'components/feed/stories-list';
-import StoryDetails from 'components/details/story-details';
+import SplitLayout from 'components/shared/layouts/split-layout/SplitLayout';
+import StoriesList from 'components/feed/stories-list/StoriesList';
+import StoryDetails from 'components/details/story-details/StoryDetails';
 
 import { fetchStories, fetchStoryIds } from 'api/stories';
 import useWindowSize from 'hooks/useWindowDimensions';
 
 export default function HomePage({ storyIds, stories, initialSelectedStoryId }) {
   const router = useRouter();
-  const { mode } = router.query;
   const [selectedStoryId, setSelectedStoryId] = useState(initialSelectedStoryId);
   const { isMobile } = useWindowSize();
 
@@ -33,15 +29,6 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
       </Head>
 
       <SplitLayout.Left only={isMobile}>
-        <Logo>(Better) Hacker News</Logo>
-        <Navbar>
-          <Navbar.Item onClick={() => router.push('?mode=top')} isActive={mode === 'top' || !mode}>
-            Top
-          </Navbar.Item>
-          <Navbar.Item onClick={() => router.push('?mode=new')} isActive={mode === 'new'}>
-            New
-          </Navbar.Item>
-        </Navbar>
         <StoriesList storyIds={storyIds} initialStories={stories}>
           {(stories) =>
             stories.map((story) => (
@@ -62,15 +49,10 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
   );
 }
 
-export async function getServerSideProps(context) {
-  const storyIds = await fetchStoryIds({ mode: context.query?.mode });
+export async function getServerSideProps() {
+  const storyIds = await fetchStoryIds();
   const stories = await fetchStories({ from: 0, to: 30, storyIds });
   const initialSelectedStoryId = storyIds[0];
+
   return { props: { storyIds, stories, initialSelectedStoryId } };
 }
-
-const Logo = styled.p`
-  font-family: Jetbrains Mono;
-  padding-bottom: 25px;
-  opacity: 0.9;
-`;

@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import Details from 'components/details/story-details';
 import { useQuery } from 'react-query';
 import { fetchStory } from 'api/stories';
-import DetailsLayout from 'components/shared/layouts/details-layout';
+
+import Details from 'components/details/story-details/StoryDetails';
+import DetailsLayout from 'components/shared/layouts/details-layout/DetailsLayout';
 
 export default function StoryDetailsPage() {
   const router = useRouter();

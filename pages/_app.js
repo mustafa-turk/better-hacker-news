@@ -17,7 +17,7 @@ export default function CustomApp({ Component, pageProps }) {
       <Global />
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <SkeletonTheme color={theme.colors.gray[50]} highlightColor={theme.colors.gray[100]}>
+          <SkeletonTheme color={theme.colors.gray[900]} highlightColor={theme.colors.gray[800]}>
             <Component {...pageProps} />
           </SkeletonTheme>
         </ThemeProvider>

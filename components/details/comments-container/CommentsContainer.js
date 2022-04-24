@@ -1,11 +1,8 @@
-import Skeleton from 'react-loading-skeleton';
 import { useQuery } from 'react-query';
+import styled from 'styled-components';
+import Skeleton from 'react-loading-skeleton';
 import { fetchComments } from 'api/stories';
-import * as Styled from './styled';
-import { useState } from 'react';
-import moment from 'moment';
-import { isEmpty, map } from 'lodash';
-import { CommentIcon } from 'components/shared/Icon';
+import Comment from './Comment';
 
 export default function CommentsContainer({ storyId, length }) {
   const { data: comments, isLoading } = useQuery(
@@ -17,43 +14,29 @@ export default function CommentsContainer({ storyId, length }) {
   );
   if (!storyId || isLoading) {
     return (
-      <Styled.LoadingComments>
+      <>
         <Skeleton />
         <Skeleton width="80%" />
         <Skeleton width="70%" />
-      </Styled.LoadingComments>
+      </>
     );
   }
   if (!comments || comments.length === 0) {
-    return <Styled.NoComment>No comments yet 😢</Styled.NoComment>;
+    return <CommentsContainerEmptyText>Nothing yet 😢</CommentsContainerEmptyText>;
   }
   return (
-    <>
-      <Styled.Title>
-        <CommentIcon />
-        {length} Comments
-      </Styled.Title>
+    <Container>
       {comments.map((comment) => !comment.text || <Comment key={comment.id} comment={comment} />)}
-    </>
+    </Container>
   );
 }
 
-function Comment({ comment, isNested }) {
-  const [hidden, setHidden] = useState(false);
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
-  return (
-    <Styled.Container isNested={isNested}>
-      <Styled.Author>
-        {comment.author} • {moment(new Date(comment.created_at_i * 1000)).fromNow()}
-      </Styled.Author>
-      <Styled.Content dangerouslySetInnerHTML={{ __html: comment.text }} />
-      {isEmpty(comment.children) || (
-        <Styled.Button onClick={() => setHidden(!hidden)}>
-          {hidden ? 'Show replies' : 'Hide replies'}
-        </Styled.Button>
-      )}
-      {!hidden &&
-        map(comment.children, (nestedComment) => <Comment comment={nestedComment} isNested />)}
-    </Styled.Container>
-  );
-}
+const CommentsContainerEmptyText = styled.p`
+  color: ${(p) => p.theme.colors.gray[600]};
+`;

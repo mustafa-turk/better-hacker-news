@@ -1,12 +1,13 @@
-import Skeleton from 'react-loading-skeleton';
 import moment from 'moment';
-import CommentsContainer from '../comments-container';
-import { LinkIcon } from 'components/shared/Icon';
-import * as Styled from './styled';
+import styled from 'styled-components';
 import { useQuery } from 'react-query';
 import { useEffect } from 'react';
 import { fetchStory } from 'api/stories';
+
+import CommentsContainer from 'components/details/comments-container/CommentsContainer';
 import ErrorBoundary from 'components/shared/ErrorBoundary';
+import { LinkIcon } from 'components/shared/Icon';
+import Skeleton from 'components/shared/Skeleton';
 
 export default function StoryDetails({ storyId }) {
   const {
@@ -21,16 +22,16 @@ export default function StoryDetails({ storyId }) {
 
   useEffect(() => {
     refetch(storyId);
-  }, [refetch, storyId]);
+  }, [storyId]);
 
   const { title, url, time, domain, descendants, by } = story;
   const metadata = `${by} • ${moment(new Date(time * 1000)).fromNow()}`;
 
   return (
     <ErrorBoundary isError={isError}>
-      <Styled.Header>
-        <Styled.Title>{isLoading ? <Skeleton /> : title}</Styled.Title>
-        <Styled.Source href={url} target="_blank" rel="noopener">
+      <StoryDetailsHeader>
+        <StoryDetailsTitle>{isLoading ? <Skeleton /> : title}</StoryDetailsTitle>
+        <StoryDetailsSource href={url} target="_blank" rel="noopener">
           {isLoading ? (
             <Skeleton />
           ) : domain ? (
@@ -39,10 +40,36 @@ export default function StoryDetails({ storyId }) {
               <div>{domain}</div>
             </>
           ) : null}
-        </Styled.Source>
-        <Styled.MetaData>{isLoading ? <Skeleton /> : metadata}</Styled.MetaData>
-      </Styled.Header>
+        </StoryDetailsSource>
+        <StoryDetailsMetaData>{isLoading ? <Skeleton /> : metadata}</StoryDetailsMetaData>
+      </StoryDetailsHeader>
       <CommentsContainer storyId={storyId} length={descendants} />
     </ErrorBoundary>
   );
 }
+
+export const StoryDetailsHeader = styled.div`
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid ${(p) => p.theme.colors.gray[800]};
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const StoryDetailsTitle = styled.h1`
+  font-weight: 900;
+  font-size: 28px;
+`;
+
+export const StoryDetailsSource = styled.a`
+  color: ${(p) => p.theme.colors.blue[500]};
+  display: flex;
+  svg {
+    margin-right: 5px;
+  }
+`;
+
+export const StoryDetailsMetaData = styled.div`
+  color: ${(p) => p.theme.colors.gray[500]};
+`;
