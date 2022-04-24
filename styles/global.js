@@ -42,9 +42,6 @@ export default createGlobalStyle`
   ul {
     padding-inline-start: 20px;
   }
-  hr {
-    border-top: 1px solid #EAEAEA;
-  }
   h1 {
     font-size: 28px;
   }
