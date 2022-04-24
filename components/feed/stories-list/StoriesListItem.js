@@ -5,7 +5,7 @@ import { colors } from 'config';
 export default function StoryListItem({ story = {}, onClick }) {
   return (
     <div onClick={onClick}>
-      <Container>
+      <StoryListItemContainer>
         <StoryListItemTitle>{story.title}</StoryListItemTitle>
         {story.domain ? (
           <StoryListItemDomain>
@@ -17,12 +17,12 @@ export default function StoryListItem({ story = {}, onClick }) {
           <span>•</span>
           <span>{story.date}</span>
         </StoryListItemMetaData>
-      </Container>
+      </StoryListItemContainer>
     </div>
   );
 }
 
-const Container = styled.div`
+const StoryListItemContainer = styled.div`
   cursor: pointer;
   padding: 8px;
   display: flex;

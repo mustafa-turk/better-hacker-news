@@ -18,7 +18,7 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
     if (isMobile) {
       setSelectedStoryId(storyId);
     } else {
-      router.push(`/story/${storyId}`);
+      router.push(`/${storyId}`);
     }
   }
 

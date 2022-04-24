@@ -47,6 +47,7 @@ export default createGlobalStyle`
   }
   p {
     margin: 0 !important;
+    line-height: 21px !important;
   }
   a:link {
     word-wrap: break-word;
