@@ -9,7 +9,7 @@ export default function LoadingIndicator() {
       width={20}
       strokeWidth={5}
       color={colors.gray[400]}
-      secondaryColor={theme.colors.gray[500]}
+      secondaryColor={colors.gray[500]}
     />
   );
 }
