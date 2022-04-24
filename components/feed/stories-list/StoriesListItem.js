@@ -23,13 +23,16 @@ export default function StoryListItem({ story = {}, onClick }) {
 }
 
 const Container = styled.div`
-  background: ${(p) => (p.isActive ? colors.gray[100] : 'none')};
   cursor: pointer;
   padding: 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: left;
+  border-radius: 6px;
+  &:hover {
+    background: ${colors.gray[900]};
+  }
 `;
 
 const StoryListItemTitle = styled.p`
