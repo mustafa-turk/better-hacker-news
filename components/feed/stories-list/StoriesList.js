@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { fetchStories } from 'api/stories';
 
-import { BATCH_AMOUNT } from 'utils/constants';
-
 import StoryListItem from './StoriesListItem';
 import LoadingIndicator from 'components/shared/LoadingIndicator';
 import Text from 'components/shared/Text';
 import { colors } from 'config';
+
+const BATCH_AMOUNT = 30;
 
 function StoriesList({ initialStories, storyIds, children }) {
   const [stories, setStories] = useState([]);
