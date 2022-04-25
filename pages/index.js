@@ -25,7 +25,7 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
   return (
     <SplitLayout>
       <Head>
-        <title>(Better) Hacker News | Stories</title>
+        <title>Hacker News | Stories</title>
       </Head>
 
       <SplitLayout.Left only={isMobile}>
