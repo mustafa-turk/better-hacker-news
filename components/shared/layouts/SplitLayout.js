@@ -13,7 +13,8 @@ const SplitLayoutContainer = styled.div`
 const SplitLayoutLeft = styled.div`
   height: 100vh;
   overflow-y: scroll;
-  width: 350px;
+  min-width: 350px;
+  max-width: 350px;
   padding: 16px;
   @media (max-width: 768px) {
     width: 100%;

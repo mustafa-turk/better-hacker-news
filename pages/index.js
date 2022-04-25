@@ -14,14 +14,6 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
   const [selectedStoryId, setSelectedStoryId] = useState(initialSelectedStoryId);
   const { isMobile } = useWindowSize();
 
-  function handleStoryClick(storyId) {
-    if (isMobile) {
-      setSelectedStoryId(storyId);
-    } else {
-      router.push(`/${storyId}`);
-    }
-  }
-
   return (
     <SplitLayout>
       <Head>
@@ -35,7 +27,9 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
               <StoriesList.Item
                 key={story.id}
                 story={story}
-                onClick={() => handleStoryClick(story.id)}
+                onClick={() =>
+                  isMobile ? router.push(`/${storyId}`) : setSelectedStoryId(storyId)
+                }
               />
             ))
           }
