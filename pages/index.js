@@ -28,7 +28,7 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
         <title>Hacker News | Stories</title>
       </Head>
 
-      <SplitLayout.Left only={isMobile}>
+      <SplitLayout.Left>
         <StoriesList storyIds={storyIds} initialStories={stories}>
           {(stories) =>
             stories.map((story) => (

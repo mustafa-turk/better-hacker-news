@@ -4,7 +4,7 @@ function SplitLayout({ children }) {
   return <SplitLayoutContainer>{children}</SplitLayoutContainer>;
 }
 
-export const SplitLayoutContainer = styled.div`
+const SplitLayoutContainer = styled.div`
   display: flex;
   max-width: 1200px;
   margin: 0 auto;
@@ -13,15 +13,20 @@ export const SplitLayoutContainer = styled.div`
 const SplitLayoutLeft = styled.div`
   height: 100vh;
   overflow-y: scroll;
-  min-width: ${(p) => (p.only ? '350px' : '100%')};
-  max-width: ${(p) => (p.only ? '350px' : '100%')};
+  width: 350px;
   padding: 16px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const SplitLayoutRight = styled.div`
   height: 100vh;
   overflow-y: scroll;
   padding: 20px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 SplitLayout.Left = SplitLayoutLeft;
