@@ -3,8 +3,11 @@ import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { fetchStory } from 'api/stories';
 
-import Details from 'components/details/story-details/StoryDetails';
-import DetailsLayout from 'components/shared/layouts/details-layout/DetailsLayout';
+import StoryDetails from 'components/details/story-details/StoryDetails';
+import DetailsLayout from 'components/shared/layouts/DetailsLayout';
+import { ArrowLeft } from 'components/shared/Icon';
+import Box from 'components/shared/Box';
+import Button from 'components/shared/Button';
 
 export default function StoryDetailsPage() {
   const router = useRouter();
@@ -16,7 +19,13 @@ export default function StoryDetailsPage() {
       <Head>
         <title>{story.title}</title>
       </Head>
-      <Details storyId={storyId} story={story} isLoading={isLoading} />
+      <Box mb={3}>
+        <Button>
+          <ArrowLeft size={24} onClick={() => router.back()} />
+        </Button>
+      </Box>
+
+      <StoryDetails storyId={storyId} story={story} isLoading={isLoading} />
     </DetailsLayout>
   );
 }

@@ -12,14 +12,6 @@ export default function Comment({ comment, isNested }) {
     return (
       <Container isNested={isNested}>
         <CommentDeletedText>This comment is deleted</CommentDeletedText>
-        {isEmpty(comment.children) || (
-          <CommentButton onClick={() => setHidden(!hidden)}>
-            {hidden ? <ExpandIcon /> : <CollapseIcon />}
-            {hidden ? `Show replies` : 'Hide replies'}
-          </CommentButton>
-        )}
-        {!hidden &&
-          map(comment.children, (nestedComment) => <Comment comment={nestedComment} isNested />)}
       </Container>
     );
   }
@@ -72,7 +64,7 @@ const CommentButton = styled.button`
   color: ${colors.gray[300]};
   cursor: pointer;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
   gap: 6px;

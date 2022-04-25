@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import SplitLayout from 'components/shared/layouts/split-layout/SplitLayout';
+import SplitLayout from 'components/shared/layouts/SplitLayout';
 import StoriesList from 'components/feed/stories-list/StoriesList';
 import StoryDetails from 'components/details/story-details/StoryDetails';
 

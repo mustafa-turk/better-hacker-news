@@ -9,6 +9,7 @@ import CommentsContainer from 'components/details/comments-container/CommentsCon
 import ErrorBoundary from 'components/shared/ErrorBoundary';
 import { LinkIcon } from 'components/shared/Icon';
 import Skeleton from 'components/shared/Skeleton';
+import Box from 'components/shared/Box';
 
 export default function StoryDetails({ storyId }) {
   const {
@@ -42,7 +43,7 @@ export default function StoryDetails({ storyId }) {
             </>
           ) : null}
         </StoryDetailsSource>
-        <StoryDetailsMetaData>{isLoading ? <Skeleton /> : metadata}</StoryDetailsMetaData>
+        <Box color={colors.gray[500]}>{isLoading ? <Skeleton /> : metadata}</Box>
       </StoryDetailsHeader>
       <CommentsContainer storyId={storyId} length={descendants} />
     </ErrorBoundary>
@@ -50,8 +51,8 @@ export default function StoryDetails({ storyId }) {
 }
 
 export const StoryDetailsHeader = styled.div`
-  padding-bottom: 10px;
-  margin-bottom: 30px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
   border-bottom: 1px solid ${colors.gray[800]};
   display: flex;
   flex-direction: column;
@@ -66,11 +67,5 @@ export const StoryDetailsTitle = styled.h1`
 export const StoryDetailsSource = styled.a`
   color: ${colors.blue[500]};
   display: flex;
-  svg {
-    margin-right: 5px;
-  }
-`;
-
-export const StoryDetailsMetaData = styled.div`
-  color: ${colors.gray[500]};
+  gap: 5px;
 `;
