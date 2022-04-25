@@ -17,7 +17,7 @@ const SplitLayoutLeft = styled.div`
   max-width: 350px;
   padding: 16px;
   @media (max-width: 768px) {
-    width: 100%;
+    min-width: 100%;
   }
 `;
 
