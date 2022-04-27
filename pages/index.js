@@ -28,7 +28,7 @@ export default function HomePage({ storyIds, stories, initialSelectedStoryId }) 
                 key={story.id}
                 story={story}
                 onClick={() =>
-                  isMobile ? router.push(`/${storyId}`) : setSelectedStoryId(storyId)
+                  isMobile ? setSelectedStoryId(story.id) : router.push(`/${story.id}`)
                 }
               />
             ))
