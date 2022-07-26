@@ -1,8 +1,5 @@
 import moment from 'moment';
 import styled from 'styled-components';
-import { useQuery } from 'react-query';
-import { useEffect } from 'react';
-import { fetchStory } from 'api/stories';
 import { colors } from 'config';
 
 import CommentsContainer from 'components/details/comments-container/CommentsContainer';
@@ -10,42 +7,48 @@ import ErrorBoundary from 'components/shared/ErrorBoundary';
 import { LinkIcon } from 'components/shared/Icon';
 import Skeleton from 'components/shared/Skeleton';
 import Box from 'components/shared/Box';
+import Button from 'components/shared/Button';
+import { ArrowLeft } from 'components/shared/Icon';
+
+import useStoryDetails from './useStoryDetails';
+import { useRouter } from 'next/router';
+import useWindowSize from 'hooks/useWindowDimensions';
 
 export default function StoryDetails({ storyId }) {
-  const {
-    data: story = {},
-    isLoading,
-    refetch,
-    isError,
-  } = useQuery([storyId], ({ queryKey: storyId }) => fetchStory(storyId), {
-    manual: true,
-    retry: false,
-  });
+  const router = useRouter();
+  const { isDesktop } = useWindowSize();
+  const { story, isLoading, isError } = useStoryDetails({ storyId });
+  const metadata = `${story.by} • ${moment(new Date(story.time * 1000)).fromNow()}`;
 
-  useEffect(() => {
-    refetch(storyId);
-  }, [storyId]);
+  if (!storyId) return null;
 
-  const { title, url, time, domain, descendants, by } = story;
-  const metadata = `${by} • ${moment(new Date(time * 1000)).fromNow()}`;
+  function navigateHome() {
+    router.push('/', undefined, { shallow: true });
+  }
 
   return (
     <ErrorBoundary isError={isError}>
+      <Box mb={3} display={isDesktop ? 'none' : 'block'}>
+        <Button onClick={navigateHome}>
+          <ArrowLeft size={24} />
+        </Button>
+      </Box>
+
       <StoryDetailsHeader>
-        <StoryDetailsTitle>{isLoading ? <Skeleton /> : title}</StoryDetailsTitle>
-        <StoryDetailsSource href={url} target="_blank" rel="noopener">
+        <StoryDetailsTitle>{isLoading ? <Skeleton /> : story.title}</StoryDetailsTitle>
+        <StoryDetailsSource href={story.url} target="_blank" rel="noopener">
           {isLoading ? (
             <Skeleton />
-          ) : domain ? (
+          ) : story.domain ? (
             <>
               <LinkIcon size="19px" />
-              <div>{domain}</div>
+              <div>{story.domain}</div>
             </>
           ) : null}
         </StoryDetailsSource>
         <Box color={colors.gray[500]}>{isLoading ? <Skeleton /> : metadata}</Box>
       </StoryDetailsHeader>
-      <CommentsContainer storyId={storyId} length={descendants} />
+      <CommentsContainer storyId={storyId} length={story.descendants} />
     </ErrorBoundary>
   );
 }

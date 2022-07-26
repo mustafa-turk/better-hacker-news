@@ -17,7 +17,7 @@ function useWindowSize() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   return {
-    isMobile: windowSize.width > 900,
+    isDesktop: windowSize.width > 900,
   };
 }
 

@@ -1,37 +1,27 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import { fetchStories } from 'api/stories';
 
 import StoryListItem from './StoriesListItem';
 import LoadingIndicator from 'components/shared/LoadingIndicator';
 import Text from 'components/shared/Text';
 import { colors } from 'config';
 
-const BATCH_AMOUNT = 30;
+import useStoriesListData from './useStoriesList';
+import { useRouter } from 'next/router';
 
-function StoriesList({ initialStories, storyIds, children }) {
-  const [stories, setStories] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setStories(initialStories);
-  }, [initialStories]);
-
-  async function getStories() {
-    setLoading(true);
-    const newStories = await fetchStories({
-      storyIds,
-      from: stories.length,
-      to: stories.length + BATCH_AMOUNT,
-    });
-    setLoading(false);
-    setStories((prevStories) => [...prevStories, ...newStories]);
-  }
+function StoriesList({ initialData }) {
+  const router = useRouter();
+  const { stories, isLoading, refetch } = useStoriesListData({ initialData });
 
   return (
     <Container>
-      {children(stories)}
-      <StoriesListLoadButton onClick={getStories}>
+      {stories.map((story) => (
+        <StoriesList.Item
+          key={story.id}
+          story={story}
+          onClick={() => router.push(`/${story.id}`)}
+        />
+      ))}
+      <StoriesListLoadButton onClick={refetch}>
         {isLoading ? <LoadingIndicator /> : <Text>More stories</Text>}
       </StoriesListLoadButton>
     </Container>

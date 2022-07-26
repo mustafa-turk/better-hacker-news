@@ -8,7 +8,7 @@ export async function fetchStoryIds() {
   return await result.json();
 }
 
-export async function fetchStory(storyId) {
+export async function fetchStory(storyId: String) {
   const STORY_URL = `${BASE_URL}/item`;
   const result = await fetch(`${STORY_URL}/${storyId}.json`);
 
@@ -23,12 +23,14 @@ export async function fetchStory(storyId) {
   return Promise.reject();
 }
 
-export async function fetchStories({ storyIds, from, to }) {
+export async function fetchStories({ from, to }) {
+  console.log(from, to);
+  const storyIds = await fetchStoryIds();
   const stories = await Promise.all(storyIds.slice(from, to).map((storyId) => fetchStory(storyId)));
   return stories;
 }
 
-export async function fetchComments(storyId) {
+export async function fetchComments(storyId: String) {
   const result = await fetch(`https://hn.algolia.com/api/v1/items/${storyId}`);
   const story = await result.json();
   return story.children;
