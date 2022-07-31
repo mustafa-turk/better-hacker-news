@@ -29,9 +29,20 @@ export const Button = styled.button`
 
 export const Heading = styled.h1`
   ${space}
-  font-weight: 900;
+  font-weight: 400;
   font-size: 28px;
   opacity: 0.8;
+`;
+
+export const Header = styled.div`
+  position: sticky;
+  top: 0;
+  height: 48px;
+  background: black;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  margin-bottom: 30px;
 `;
 
 export const Text = ({ children }) => <span>{children}</span>;

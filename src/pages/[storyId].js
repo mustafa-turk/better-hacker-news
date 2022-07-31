@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { Box, Button } from 'components/common';
+import { Button, Header } from 'components/common';
 import { ArrowLeft } from 'components/common/icon';
 
 import MainLayout from 'components/common/layouts/main-layout';
@@ -22,9 +22,11 @@ export default function DetailsPage({ details }) {
         <title>Hacker News | Stories</title>
       </Head>
 
-      <Button onClick={navigate} mb={4}>
-        <ArrowLeft size={24} />
-      </Button>
+      <Header>
+        <Button onClick={navigate}>
+          <ArrowLeft size={24} />
+        </Button>
+      </Header>
 
       <StoryDetails details={details} />
     </MainLayout>
