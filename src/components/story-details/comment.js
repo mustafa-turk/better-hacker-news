@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import { isEmpty, map } from 'lodash';
 import { colors } from 'config';
-import { CollapseIcon, ExpandIcon } from 'components/shared/Icon';
+import { CollapseIcon, ExpandIcon } from 'components/common/icon';
 
 export default function Comment({ comment, isNested }) {
   const [hidden, setHidden] = useState(true);

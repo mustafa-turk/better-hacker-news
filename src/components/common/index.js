@@ -1,9 +1,15 @@
 import { colors } from 'config';
 import styled from 'styled-components';
-import { color, border, space } from 'styled-system';
+import { color, border, space, display } from 'styled-system';
 
-const Button = styled.button`
+export const Box = styled.div`
   ${color}
+  ${border}
+  ${space}
+  ${display}
+`;
+
+export const Button = styled.button`
   ${border}
   ${space}
   padding: 5px 10px;
@@ -21,4 +27,4 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export const Text = ({ children }) => <span>{children}</span>;

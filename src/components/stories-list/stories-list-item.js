@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LinkIcon } from 'components/shared/Icon';
+import { LinkIcon } from 'components/common/icon';
 import { colors } from 'config';
 
 export default function StoryListItem({ story = {}, onClick }) {
@@ -24,12 +24,13 @@ export default function StoryListItem({ story = {}, onClick }) {
 
 const StoryListItemContainer = styled.div`
   cursor: pointer;
-  padding: 8px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: left;
-  border-radius: 6px;
+  border-radius: 12px;
+  border: 1px solid ${colors.gray[900]};
   &:hover {
     background: ${colors.gray[900]};
   }

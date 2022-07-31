@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchStories } from 'api/stories';
+import { fetchStories } from 'helpers/api';
 import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
 
 const BATCH_AMOUNT = 30;

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
-import StoryListItem from './StoriesListItem';
-import LoadingIndicator from 'components/shared/LoadingIndicator';
-import Text from 'components/shared/Text';
+import StoriesListItem from './stories-list-item';
+import LoadingIndicator from 'components/common/loading-indicator';
+import { Text } from 'components/common';
 import { colors } from 'config';
 
-import useStoriesListData from './useStoriesList';
-import { useRouter } from 'next/router';
+import useStoriesListData from './use-stories-list-data';
 
 function StoriesList({ initialData }) {
   const router = useRouter();
@@ -15,11 +15,7 @@ function StoriesList({ initialData }) {
   return (
     <Container>
       {stories.map((story) => (
-        <StoriesList.Item
-          key={story.id}
-          story={story}
-          onClick={() => router.push(`/${story.id}`)}
-        />
+        <StoriesListItem key={story.id} story={story} onClick={() => router.push(`/${story.id}`)} />
       ))}
       <StoriesListLoadButton onClick={refetch}>
         {isLoading ? <LoadingIndicator /> : <Text>More stories</Text>}
@@ -45,14 +41,11 @@ const StoriesListLoadButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   height: 40px;
   &:hover {
     background: ${colors.gray[800]};
     cursor: pointer;
   }
 `;
-
-StoriesList.Item = StoryListItem;
 
 export default StoriesList;
