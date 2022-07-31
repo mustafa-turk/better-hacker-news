@@ -14,7 +14,7 @@ export default createGlobalStyle`
     animation: fadeIn ease 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-    background: #0F0F0F;
+    background: #000;
     font-family: 'Roboto';
     color: white;
   }

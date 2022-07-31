@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { colors } from 'config';
 
-import { Box } from 'components/common';
+import { Box, Heading } from 'components/common';
 import { LinkIcon } from 'components/common/icon';
 
 import CommentsContainer from 'components/story-details/comments-container';
@@ -14,7 +14,7 @@ export default function StoryDetails({ details: story }) {
   return (
     <>
       <Header>
-        <Title>{story.title}</Title>
+        <Heading>{story.title}</Heading>
         <Source href={story.url} target="_blank" rel="noopener">
           {story.domain ? (
             <>
@@ -37,11 +37,6 @@ export const Header = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-`;
-
-export const Title = styled.h1`
-  font-weight: 900;
-  font-size: 28px;
 `;
 
 export const Source = styled.a`

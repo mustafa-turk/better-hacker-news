@@ -27,4 +27,10 @@ export const Button = styled.button`
   }
 `;
 
+export const Heading = styled.h1`
+  ${space}
+  font-weight: 900;
+  font-size: 28px;
+`;
+
 export const Text = ({ children }) => <span>{children}</span>;
