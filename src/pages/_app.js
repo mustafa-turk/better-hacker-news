@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { colors } from 'config';
-import GlobalStyles from '../styles/global-styles';
+import GlobalStyles from 'styles/global-styles';
 
 const queryClient = new QueryClient();
 

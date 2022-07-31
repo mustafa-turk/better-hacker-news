@@ -24,15 +24,15 @@ export default function StoryListItem({ story = {}, onClick }) {
 
 const StoryListItemContainer = styled.div`
   cursor: pointer;
-  padding: 16px;
+  padding: 6px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   text-align: left;
-  border-radius: 12px;
-  border: 1px solid ${colors.gray[900]};
+  opacity: 0.8;
+  transition: opacity 0.3s;
   &:hover {
-    background: ${colors.gray[900]};
+    opacity: 1;
   }
 `;
 

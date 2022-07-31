@@ -31,6 +31,7 @@ export const Heading = styled.h1`
   ${space}
   font-weight: 900;
   font-size: 28px;
+  opacity: 0.8;
 `;
 
 export const Text = ({ children }) => <span>{children}</span>;
