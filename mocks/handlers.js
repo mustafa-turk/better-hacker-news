@@ -9,14 +9,14 @@ export const handlers = [
     return res(
       ctx.json({
         by: 'bmlw',
-        descendants: 58,
-        id: 32298137,
-        kids: [32298786, 32298803, 32298406],
-        score: 143,
+        descendants: 3,
+        id: 1,
+        kids: [2, 3, 4],
+        score: 123,
         time: 1659296371,
         title: 'Some title',
         type: 'story',
-        url: 'https://bret.dk/raspberry-pi-zero-vs-mangopi-mq-pro-benchmarks/',
+        url: 'http://some-url.com',
       }),
     );
   }),
