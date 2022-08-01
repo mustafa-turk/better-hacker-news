@@ -1,15 +1,14 @@
 import moment from 'moment';
-
-const BASE_URL = 'https://hacker-news.firebaseio.com/v0';
+import { STORY_DETAILS_COMMENTS_URL, STORY_DETAILS_URL, TOP_STORIES_URL } from './constants';
 
 export async function fetchStoryIds() {
-  const result = await fetch(`${BASE_URL}/topstories.json`);
+  const result = await fetch(TOP_STORIES_URL);
 
   return await result.json();
 }
 
 export async function fetchStory(storyId) {
-  const result = await fetch(`${BASE_URL}/item/${storyId}.json`);
+  const result = await fetch(`${STORY_DETAILS_URL}/${storyId}.json`);
 
   const story = await result.json();
   if (story) {
@@ -31,7 +30,7 @@ export async function fetchStories({ from, to }) {
 }
 
 export async function fetchComments(storyId) {
-  const result = await fetch(`https://hn.algolia.com/api/v1/items/${storyId}`);
+  const result = await fetch(`${STORY_DETAILS_COMMENTS_URL}/${storyId}`);
   const story = await result.json();
 
   return story.children;

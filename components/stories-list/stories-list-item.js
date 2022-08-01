@@ -6,16 +6,16 @@ export default function StoryListItem({ story = {}, onClick }) {
   return (
     <div onClick={onClick}>
       <StoryListItemContainer>
-        <StoryListItemTitle>{story.title}</StoryListItemTitle>
+        <StoryListItemTitle data-testid="title">{story.title}</StoryListItemTitle>
         {story.domain ? (
           <StoryListItemDomain>
             <StoryListItemDomainIcon /> {story.domain}
           </StoryListItemDomain>
         ) : null}
         <StoryListItemMetaData>
-          <span>{story.descendants} comments</span>
+          <span data-testid="comments-count">{story.descendants} comments</span>
           <span>•</span>
-          <span>{story.date}</span>
+          <span data-testid="date">{story.date}</span>
         </StoryListItemMetaData>
       </StoryListItemContainer>
     </div>

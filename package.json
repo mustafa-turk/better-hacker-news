@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "@cypress/mock-ssr": "github:cypress-io/cypress-mock-ssr#master",
     "@emotion/babel-plugin": "^11.3.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
@@ -21,7 +20,6 @@
   "devDependencies": {
     "@cypress/react": "^5.9.4",
     "@cypress/webpack-dev-server": "^1.4.0",
-    "@types/react": "^17.0.47",
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.12.0",
     "cypress": "^8.7.0",
@@ -31,9 +29,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "html-webpack-plugin": "^4.5.2",
     "msw": "^0.44.2",
-    "nock": "^13.2.9",
     "prettier": "^2.2.1",
-    "typescript": "^4.7.4",
     "webpack": "^4.46.0",
     "webpack-dev-server": "^3.11.2"
   },
