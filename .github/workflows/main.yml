@@ -1,9 +1,10 @@
-name: E2E on Chrome
+name: E2E
 
 on: [push]
 
 jobs:
-  install:
+  e2e_testing:
+    name: E2E Testing
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
