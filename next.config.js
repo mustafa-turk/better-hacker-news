@@ -1,5 +1,1 @@
-module.exports = {
-  experimental: {
-    scrollRestoration: true,
-  },
-};
+module.exports = {};
