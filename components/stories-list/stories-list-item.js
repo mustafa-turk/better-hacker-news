@@ -1,28 +1,36 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { LinkIcon } from 'components/common/icon';
 import { colors } from 'config';
 
-export default function StoryListItem({ story = {}, onClick }) {
+export default function StoryListItem({ story = {}, onClick, order }) {
   return (
-    <div onClick={onClick}>
-      <StoryListItemContainer>
+    <StoryListItemContainer onClick={onClick} order={order}>
+      <StoryListItemDetails>
         <StoryListItemTitle data-testid="title">{story.title}</StoryListItemTitle>
         {story.domain ? (
           <StoryListItemDomain>
             <StoryListItemDomainIcon /> {story.domain}
           </StoryListItemDomain>
         ) : null}
-        <StoryListItemMetaData>
-          <span data-testid="comments-count">{story.descendants} comments</span>
-          <span>•</span>
-          <span data-testid="date">{story.date}</span>
-        </StoryListItemMetaData>
-      </StoryListItemContainer>
-    </div>
+      </StoryListItemDetails>
+    </StoryListItemContainer>
   );
 }
 
+const fade = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const StoryListItemContainer = styled.div`
+  animation: ${fade} ${(p) => 0.25 * p.order}s;
+`;
+
+const StoryListItemDetails = styled.div`
   cursor: pointer;
   padding: 6px;
   display: flex;
@@ -49,10 +57,4 @@ const StoryListItemDomain = styled.div`
 const StoryListItemDomainIcon = styled(LinkIcon)`
   margin-right: 5px;
   color: ${colors.gray[200]};
-`;
-
-const StoryListItemMetaData = styled.div`
-  color: ${colors.gray[500]};
-  display: flex;
-  gap: 8px;
 `;

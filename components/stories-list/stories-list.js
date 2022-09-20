@@ -14,8 +14,13 @@ function StoriesList({ initialData }) {
 
   return (
     <Container>
-      {stories.map((story) => (
-        <StoriesListItem key={story.id} story={story} onClick={() => router.push(`/${story.id}`)} />
+      {stories.map((story, i) => (
+        <StoriesListItem
+          key={story.id}
+          order={i}
+          story={story}
+          onClick={() => router.push(`/${story.id}`)}
+        />
       ))}
       <StoriesListLoadButton onClick={refetch}>
         {isLoading ? <LoadingIndicator /> : <Text>More stories</Text>}
