@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import Comment from './comment';
-import { colors } from 'config';
+import { colors } from 'theme';
 import useCommentsData from './use-comments-data';
 
 export default function CommentsContainer({ storyId }) {

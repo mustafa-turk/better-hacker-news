@@ -1,5 +1,5 @@
 import { Oval } from 'react-loader-spinner';
-import { colors } from 'config';
+import { colors } from 'theme';
 
 export default function LoadingIndicator() {
   return (

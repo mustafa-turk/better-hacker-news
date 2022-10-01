@@ -9,7 +9,7 @@
     "export": "next export",
     "start": "next start",
     "start:test": "NODE_ENV=test next start",
-    "cypress": "NODE_ENV=test cypress open"
+    "cypress": "NODE_ENV=test cypress open --config project=src"
   },
   "dependencies": {
     "@emotion/babel-plugin": "^11.3.0",

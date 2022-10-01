@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { fetchComments } from 'helpers/api';
+import { fetchComments } from 'src/helpers/api';
 
 export default function useCommentsData(storyId) {
   const {

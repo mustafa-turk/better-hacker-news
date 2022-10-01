@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
 import StoriesListItem from './stories-list-item';
-import LoadingIndicator from 'components/common/loading-indicator';
-import { Text } from 'components/common';
-import { colors } from 'config';
+import LoadingIndicator from 'src/components/common/loading-indicator';
+import { Text } from 'src/components/common';
+import { colors } from 'theme';
 
 import useStoriesListData from './use-stories-list-data';
 

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
-import { LinkIcon } from 'components/common/icon';
-import { colors } from 'config';
+import { LinkIcon } from 'src/components/common/icon';
+import { colors } from 'theme';
 
 export default function StoryListItem({ story = {}, onClick, order }) {
   return (

@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { STORY_DETAILS_URL, TOP_STORIES_URL } from 'helpers/constants';
+import { STORY_DETAILS_URL, TOP_STORIES_URL } from 'src/helpers/constants';
 
 const topStoriesMock = rest.get(TOP_STORIES_URL, (_req, res, ctx) => {
   return res(ctx.json(['1']));

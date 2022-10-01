@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { colors } from 'config';
-import GlobalStyles from 'styles/global-styles';
+import { colors } from 'theme';
+import GlobalStyles from 'src/styles/global-styles';
 
 const queryClient = new QueryClient();
 
 if (process.env.API_MOCKING === 'enabled') {
-  require('mocks');
+  require('src/mocks');
 }
 
 export default function App({ Component, pageProps }) {

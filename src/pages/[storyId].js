@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import { Button, Header } from 'components/common';
-import { ArrowLeft } from 'components/common/icon';
+import { Button, Header } from 'src/components/common';
+import { ArrowLeft } from 'src/components/common/icon';
 
-import MainLayout from 'components/common/layouts/main-layout';
-import StoryDetails from 'components/story-details/story-details';
+import MainLayout from 'src/components/common/layouts/main-layout';
+import StoryDetails from 'src/components/story-details/story-details';
 
-import { fetchStory } from 'helpers/api';
+import { fetchStory } from 'src/helpers/api';
 
 export default function DetailsPage({ details }) {
   const router = useRouter();

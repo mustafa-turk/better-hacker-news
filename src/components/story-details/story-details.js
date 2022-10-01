@@ -1,12 +1,12 @@
 import moment from 'moment';
 import styled from 'styled-components';
 
-import { colors } from 'config';
+import { colors } from 'theme';
 
-import { Box, Heading } from 'components/common';
-import { LinkIcon } from 'components/common/icon';
+import { Box, Heading } from 'src/components/common';
+import { LinkIcon } from 'src/components/common/icon';
 
-import CommentsContainer from 'components/story-details/comments-container';
+import CommentsContainer from 'src/components/story-details/comments-container';
 
 export default function StoryDetails({ details: story }) {
   const metadata = `${story.by} • ${moment(new Date(story.time * 1000)).fromNow()}`;

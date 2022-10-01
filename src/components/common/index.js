@@ -1,4 +1,4 @@
-import { colors } from 'config';
+import { colors } from 'theme';
 import styled from 'styled-components';
 import { color, border, space, display } from 'styled-system';
 
