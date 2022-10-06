@@ -6,9 +6,9 @@ import LoadingIndicator from 'src/components/common/loading-indicator';
 import { Text } from 'src/components/common';
 import { colors } from 'theme';
 
-import useStoriesListData from './use-stories-list-data';
+import useStoriesListData, { Props } from './use-stories-list-data';
 
-function StoriesList({ initialData }) {
+function StoriesList({ initialData }: Props) {
   const router = useRouter();
   const { stories, isLoading, refetch } = useStoriesListData({ initialData });
 

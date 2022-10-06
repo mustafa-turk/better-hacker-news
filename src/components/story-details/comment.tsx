@@ -4,8 +4,14 @@ import { useState } from 'react';
 import { isEmpty, map } from 'lodash';
 import { colors } from 'theme';
 import { CollapseIcon, ExpandIcon } from 'src/components/common/icon';
+import { CommentType } from 'src/helpers/types';
 
-export default function Comment({ comment, isNested }) {
+type CommentProps = {
+  comment: CommentType,
+  isNested?: boolean,
+};
+
+export default function Comment({ comment, isNested = false }: CommentProps) {
   const [hidden, setHidden] = useState(true);
 
   if (!comment.text) {

@@ -4,7 +4,11 @@ import Comment from './comment';
 import { colors } from 'theme';
 import useCommentsData from './use-comments-data';
 
-export default function CommentsContainer({ storyId }) {
+type CommentsContainerProps = {
+  storyId: number;
+};
+
+export default function CommentsContainer({ storyId }: CommentsContainerProps) {
   const { isLoading, isEmpty, comments } = useCommentsData(storyId);
 
   if (isLoading) {

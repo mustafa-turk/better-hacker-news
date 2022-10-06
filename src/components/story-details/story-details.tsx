@@ -8,24 +8,40 @@ import { LinkIcon } from 'src/components/common/icon';
 
 import CommentsContainer from 'src/components/story-details/comments-container';
 
-export default function StoryDetails({ details: story }) {
-  const metadata = `${story.by} • ${moment(new Date(story.time * 1000)).fromNow()}`;
+interface Story {
+  details: {
+    by: string;
+    date: string;
+    descendants: number;
+    domain: string;
+    id: number;
+    kids: number[];
+    score: number;
+    time: number;
+    title: string;
+    type: 'story';
+    url: string;
+  };
+}
+
+export default function StoryDetails({ details }: Story) {
+  const metadata = `${details.by} • ${moment(new Date(details.time * 1000)).fromNow()}`;
 
   return (
     <>
       <Header>
-        <Heading>{story.title}</Heading>
-        <Source href={story.url} target="_blank" rel="noopener">
-          {story.domain ? (
+        <Heading>{details.title}</Heading>
+        <Source href={details.url} target="_blank" rel="noopener">
+          {details.domain ? (
             <>
               <LinkIcon size="19px" />
-              <div>{story.domain}</div>
+              <div>{details.domain}</div>
             </>
           ) : null}
         </Source>
         <Box color={colors.gray[500]}>{metadata}</Box>
       </Header>
-      <CommentsContainer storyId={story.id} length={story.descendants} />
+      <CommentsContainer storyId={details.id} />
     </>
   );
 }

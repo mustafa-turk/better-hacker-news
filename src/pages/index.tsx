@@ -18,7 +18,7 @@ export default function StoriesPage({ stories }) {
 }
 
 export async function getServerSideProps() {
-  const stories = await fetchStories({ from: 0, to: 30 });
+  const stories = await fetchStories(0, 30);
 
   return { props: { stories } };
 }

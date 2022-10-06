@@ -2,7 +2,16 @@ import styled, { keyframes } from 'styled-components';
 import { LinkIcon } from 'src/components/common/icon';
 import { colors } from 'theme';
 
-export default function StoryListItem({ story = {}, onClick, order }) {
+interface Props {
+  story: {
+    title?: string;
+    domain?: string;
+  };
+  onClick: Function;
+  order: number;
+}
+
+export default function StoryListItem({ story = {}, onClick, order }: Props) {
   return (
     <StoryListItemContainer onClick={onClick} order={order}>
       <StoryListItemDetails>
