@@ -1,26 +1,42 @@
 import styled from 'styled-components';
+import { isEmpty } from 'lodash';
 import { useRouter } from 'next/router';
 
-import StoriesListItem from './stories-list-item';
+import StoriesListItem, { LoadingStoryListItem } from './stories-list-item';
 import LoadingIndicator from 'src/components/common/loading-indicator';
 import { Text } from 'src/components/common';
 import { colors } from 'theme';
 
-import useStoriesListData, { Props } from './use-stories-list-data';
+import useStoriesList from './use-stories-list';
 
-function StoriesList({ initialData }: Props) {
+import { StoryType } from 'src/helpers/types';
+import { BATCH_AMOUNT } from 'src/helpers/constants';
+
+function StoriesList() {
   const router = useRouter();
-  const { stories, isLoading, refetch } = useStoriesListData({ initialData });
+  const { stories, isLoading, refetch, persistList } = useStoriesList();
+
+  function handleClick(story: StoryType) {
+    // NOTE: the list and the scroll position is saved in session storage
+    // to load back when the user navigates back to the home page.
+    persistList();
+    router.push(`/${story.id}`);
+  }
+
+  if (isEmpty(stories)) {
+    return (
+      <Container>
+        {[...Array(BATCH_AMOUNT)].map((_, i) => (
+          <LoadingStoryListItem key={i} />
+        ))}
+      </Container>
+    );
+  }
 
   return (
     <Container>
-      {stories.map((story, i) => (
-        <StoriesListItem
-          key={story.id}
-          order={i}
-          story={story}
-          onClick={() => router.push(`/${story.id}`)}
-        />
+      {stories.map((story) => (
+        <StoriesListItem key={story.id} story={story} onClick={() => handleClick(story)} />
       ))}
       <StoriesListLoadButton onClick={refetch}>
         {isLoading ? <LoadingIndicator /> : <Text>More stories</Text>}

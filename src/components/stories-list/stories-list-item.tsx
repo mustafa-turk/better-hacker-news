@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import Skeleton from 'react-loading-skeleton';
 import { LinkIcon } from 'src/components/common/icon';
 import { colors } from 'theme';
 
@@ -8,12 +9,11 @@ interface Props {
     domain?: string;
   };
   onClick: Function;
-  order: number;
 }
 
-export default function StoryListItem({ story = {}, onClick, order }: Props) {
+export default function StoryListItem({ story = {}, onClick }: Props) {
   return (
-    <StoryListItemContainer onClick={onClick} order={order}>
+    <StoryListItemContainer onClick={onClick}>
       <StoryListItemDetails>
         <StoryListItemTitle data-testid="title">{story.title}</StoryListItemTitle>
         {story.domain ? (
@@ -26,18 +26,21 @@ export default function StoryListItem({ story = {}, onClick, order }: Props) {
   );
 }
 
-const fade = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+export function LoadingStoryListItem() {
+  return (
+    <StoryListItemContainer>
+      <StoryListItemDetails>
+        <StoryListItemTitle data-testid="title">
+          <Skeleton width="80%" />
+        </StoryListItemTitle>
 
-const StoryListItemContainer = styled.div`
-  animation: ${fade} ${(p) => 0.25 * p.order}s;
-`;
+        <Skeleton width="50%" />
+      </StoryListItemDetails>
+    </StoryListItemContainer>
+  );
+}
+
+const StoryListItemContainer = styled.div``;
 
 const StoryListItemDetails = styled.div`
   cursor: pointer;
