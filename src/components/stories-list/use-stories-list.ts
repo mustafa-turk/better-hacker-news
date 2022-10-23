@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useReducer } from 'react';
+import { StoryType } from 'src/helpers/types';
 import { fetchStories } from 'src/helpers/api';
-import { trackPromise, usePromiseTracker } from 'react-promise-tracker';
 import { BATCH_AMOUNT } from 'src/helpers/constants';
 
 export default function useStoriesListData() {
-  const [stories, setStories] = useState([]);
-  const { promiseInProgress: isLoading } = usePromiseTracker();
+  const [{ stories, isLoading }, dispatch] = useReducer(reducer, { stories: [], isLoading: false });
 
-  function restoreList(restoredStories) {
-    setStories(JSON.parse(restoredStories));
+  function restoreList(restoredStories: string) {
+    dispatch({ type: 'restored', payload: restoredStories });
+
     restorePageScroll(sessionStorage.getItem('scrollPosition'));
     sessionStorage.clear();
   }
@@ -24,12 +24,11 @@ export default function useStoriesListData() {
     restoredStories ? restoreList(restoredStories) : refetch();
   }, []);
 
-  async function refetch() {
-    trackPromise(
-      fetchStories(stories.length, stories.length + BATCH_AMOUNT).then((newStories) =>
-        setStories((prevStories) => [...prevStories, ...newStories]),
-      ),
-    );
+  function refetch() {
+    dispatch({ type: 'loading' });
+    fetchStories(stories.length, stories.length + BATCH_AMOUNT).then((newStories) => {
+      dispatch({ type: 'success', payload: newStories });
+    });
   }
 
   return {
@@ -38,6 +37,38 @@ export default function useStoriesListData() {
     refetch,
     persistList,
   };
+}
+
+const initial = {
+  isLoading: false,
+  stories: [],
+};
+
+type ActionType =
+  | { type: 'success'; payload: StoryType[] }
+  | { type: 'restored'; payload: string }
+  | { type: 'loading' };
+
+function reducer(state: typeof initial, action: ActionType) {
+  switch (action.type) {
+    case 'loading':
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'success':
+      return {
+        isLoading: false,
+        stories: [...state.stories, ...action.payload],
+      };
+    case 'restored':
+      return {
+        ...state,
+        stories: JSON.parse(action.payload),
+      };
+    default:
+      return state;
+  }
 }
 
 function restorePageScroll(scrollPosition: string) {

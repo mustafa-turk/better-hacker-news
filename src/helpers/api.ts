@@ -1,19 +1,7 @@
 import moment from 'moment';
 
-import { CommentType } from './types';
+import { CommentType, StoryDetails } from './types';
 import { STORY_DETAILS_COMMENTS_URL, STORY_DETAILS_URL, TOP_STORIES_URL } from './constants';
-
-interface StoryDetails {
-  by: string;
-  descendants: number;
-  id: number;
-  kids: number[];
-  score: number;
-  time: number;
-  title: string;
-  type: string;
-  url: string;
-}
 
 export async function fetchStoryIds(): Promise<number[]> {
   const result = await fetch(TOP_STORIES_URL);

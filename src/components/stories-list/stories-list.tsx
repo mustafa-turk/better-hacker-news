@@ -9,18 +9,17 @@ import { colors } from 'theme';
 
 import useStoriesList from './use-stories-list';
 
-import { StoryType } from 'src/helpers/types';
 import { BATCH_AMOUNT } from 'src/helpers/constants';
 
 function StoriesList() {
   const router = useRouter();
   const { stories, isLoading, refetch, persistList } = useStoriesList();
 
-  function handleClick(story: StoryType) {
+  function handleClick(storyId: string) {
     // NOTE: the list and the scroll position is saved in session storage
     // to load back when the user navigates back to the home page.
     persistList();
-    router.push(`/${story.id}`);
+    router.push(`/${storyId}`);
   }
 
   if (isEmpty(stories)) {
@@ -36,7 +35,7 @@ function StoriesList() {
   return (
     <Container>
       {stories.map((story) => (
-        <StoriesListItem key={story.id} story={story} onClick={() => handleClick(story)} />
+        <StoriesListItem key={story.id} story={story} onClick={() => handleClick(story.id)} />
       ))}
       <StoriesListLoadButton onClick={refetch}>
         {isLoading ? <LoadingIndicator /> : <Text>More stories</Text>}
