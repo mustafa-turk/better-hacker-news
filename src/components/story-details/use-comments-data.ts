@@ -1,16 +1,7 @@
 import { useQuery } from 'react-query';
 import { fetchComments } from 'src/helpers/api';
 
-import { CommentType } from 'src/helpers/types';
-
-type CommentsData = {
-  isLoading: boolean;
-  isError: boolean;
-  isEmpty: boolean;
-  comments: CommentType[];
-};
-
-export default function useCommentsData(storyId: number): CommentsData {
+export default function useCommentsData(storyId: number) {
   const { data, isLoading, isError } = useQuery(
     ['comments', storyId],
     () => fetchComments(storyId),

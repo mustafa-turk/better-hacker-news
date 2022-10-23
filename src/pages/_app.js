@@ -6,8 +6,8 @@ import GlobalStyles from 'src/styles/global-styles';
 
 const queryClient = new QueryClient();
 
-if (process.env.API_MOCKING === 'enabled') {
-  require('src/mocks');
+if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+  require('../mocks');
 }
 
 export default function App({ Component, pageProps }) {

@@ -34,6 +34,5 @@ export async function fetchStories(from: number, to: number): Promise<StoryDetai
 export async function fetchComments(storyId: number): Promise<CommentType[]> {
   const result = await fetch(`${STORY_DETAILS_COMMENTS_URL}/${storyId}`);
   const story = await result.json();
-
   return story.children;
 }

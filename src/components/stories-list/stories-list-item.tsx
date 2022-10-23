@@ -1,26 +1,28 @@
+import moment from 'moment';
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
 import { LinkIcon } from 'src/components/common/icon';
 import { colors } from 'theme';
+import { Box } from 'src/components/common';
 
 interface Props {
   story: {
     title?: string;
     domain?: string;
+    by?: string;
+    time?: number;
   };
   onClick: Function;
 }
 
 export default function StoryListItem({ story = {}, onClick }: Props) {
+  const metadata = `${story.by} • ${moment(new Date(story.time * 1000)).fromNow()}`;
+
   return (
     <StoryListItemContainer onClick={onClick}>
       <StoryListItemDetails>
         <StoryListItemTitle data-testid="title">{story.title}</StoryListItemTitle>
-        {story.domain ? (
-          <StoryListItemDomain>
-            <StoryListItemDomainIcon /> {story.domain}
-          </StoryListItemDomain>
-        ) : null}
+        <Box color={colors.gray[500]}>{metadata}</Box>
       </StoryListItemDetails>
     </StoryListItemContainer>
   );
@@ -47,7 +49,7 @@ const StoryListItemDetails = styled.div`
   padding: 6px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   text-align: left;
   opacity: 0.8;
   transition: opacity 0.3s;

@@ -8,7 +8,7 @@ import { LinkIcon } from 'src/components/common/icon';
 
 import CommentsContainer from 'src/components/story-details/comments-container';
 
-interface Story {
+type Story = {
   details: {
     by: string;
     date: string;
@@ -22,7 +22,7 @@ interface Story {
     type: 'story';
     url: string;
   };
-}
+};
 
 export default function StoryDetails({ details }: Story) {
   const metadata = `${details.by} • ${moment(new Date(details.time * 1000)).fromNow()}`;

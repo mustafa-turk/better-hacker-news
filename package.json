@@ -4,11 +4,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "dev:test": "API_MOCKING=enabled next",
+    "dev:test": "NODE_ENV=test next",
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "start:test": "API_MOCKING=enabled next start",
+    "start:test": "NODE_ENV=test next start",
     "cypress": "cypress open"
   },
   "dependencies": {
@@ -31,7 +31,7 @@
     "@cypress/webpack-dev-server": "^1.4.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.12.0",
-    "cypress": "^8.7.0",
+    "cypress": "^12.3.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-react": "^7.21.5",
